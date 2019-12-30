@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ngangavic.test.fragment.FragmentActivity;
+import com.ngangavic.test.rv.RVActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
 import org.json.JSONException;
@@ -68,6 +69,13 @@ mpesa();
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BinaryActivity.class));
+            }
+        });
+
+        button_rv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RVActivity.class));
             }
         });
 
