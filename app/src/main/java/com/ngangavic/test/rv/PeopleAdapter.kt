@@ -22,6 +22,7 @@ class PeopleAdapter(private var context: Context, private val p: ArrayList<Peopl
     }
 
     override fun onBindViewHolder(holder: PeopleHolder, position: Int) {
+        val ac=RVActivity()
 
         holder.textViewName.text = p[position].name
         holder.textViewAge.text = p[position].age
@@ -35,7 +36,10 @@ class PeopleAdapter(private var context: Context, private val p: ArrayList<Peopl
                 override fun onMenuItemClick(item: MenuItem): Boolean {
                     when (item.getItemId()) {
                         R.id.action_delete -> {
-                            Toast.makeText(context,"Delete item",Toast.LENGTH_SHORT).show()
+                            ac.loadDelete(p[position].id.toString(),context)
+                            p.removeAt(position)
+                            notifyItemRemoved(position)
+                            notifyItemRangeChanged(position, itemCount)
                         }
                         R.id.action_edit -> {
                             Toast.makeText(context,"Edit item",Toast.LENGTH_SHORT).show()

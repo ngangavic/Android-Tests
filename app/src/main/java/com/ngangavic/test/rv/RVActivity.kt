@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.ngangavic.test.R
 import org.json.JSONArray
+import org.json.JSONObject
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -27,7 +28,8 @@ class RVActivity : AppCompatActivity() {
     private var peopleList: MutableList<People>? = null
     private var recyclerViewAdapter: PeopleAdapter? = null
     lateinit var queue: RequestQueue
-    var url:String = "http://192.168.1.102/test/android.php"
+    var url_load:String = "http://192.168.1.102/test/android-load.php"
+    var url_delete:String = "http://192.168.1.102/test/android-delete.php"
     var p = Paint()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +50,7 @@ class RVActivity : AppCompatActivity() {
     private fun loadData(context: Context) {
 
         val str = object : StringRequest(
-                Method.POST, url,
+                Method.POST, url_load,
                 Response.Listener { response ->
                     Log.d("DATA:", response.toString())
 
@@ -83,6 +85,40 @@ class RVActivity : AppCompatActivity() {
                 }) {
             override fun getParams(): Map<String, String> {
                 val param = HashMap<String, String>()
+                return param
+            }
+        }
+        str.setRetryPolicy(
+                DefaultRetryPolicy(
+                        0,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                )
+        )
+        queue.add(str)
+    }
+
+    fun loadDelete(id:String,context: Context) {
+        queue = Volley.newRequestQueue(context)
+        val str = object : StringRequest(
+                Method.POST, url_delete,
+                Response.Listener { response ->
+                    Log.d("DATA:", response.toString())
+
+                    val jsonObject = JSONObject(response)
+                    if (jsonObject.getString("report")=="0"){
+                        Toast.makeText(context,"Item deleted",Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(context,"Item not deleted",Toast.LENGTH_SHORT).show()
+                    }
+                },
+                Response.ErrorListener { error ->
+                    error.printStackTrace()
+
+                }) {
+            override fun getParams(): Map<String, String> {
+                val param = HashMap<String, String>()
+                param["id"] = id
                 return param
             }
         }
