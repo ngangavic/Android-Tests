@@ -6,10 +6,12 @@
     app:cardBackgroundColor="#ffffff"
     app:contentPadding="10dp"
     app:cardCornerRadius="2dp"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">

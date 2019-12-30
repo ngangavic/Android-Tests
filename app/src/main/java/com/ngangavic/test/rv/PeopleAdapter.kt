@@ -2,9 +2,13 @@ package com.ngangavic.test.rv
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ngangavic.test.R
+
 
 class PeopleAdapter(private var context: Context, private val p: ArrayList<People>) :
     RecyclerView.Adapter<PeopleHolder>() {
@@ -21,6 +25,32 @@ class PeopleAdapter(private var context: Context, private val p: ArrayList<Peopl
 
         holder.textViewName.text = p[position].name
         holder.textViewAge.text = p[position].age
+        holder.linearLayout.setOnClickListener {
+            //creating a popup menu
+            val popup = PopupMenu(context, holder.linearLayout)
+            //inflating menu from xml resource
+            popup.inflate(R.menu.rv_menu)
+            //adding click listener
+            popup.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
+                override fun onMenuItemClick(item: MenuItem): Boolean {
+                    when (item.getItemId()) {
+                        R.id.action_delete -> {
+                            Toast.makeText(context,"Delete item",Toast.LENGTH_SHORT).show()
+                        }
+                        R.id.action_edit -> {
+                            Toast.makeText(context,"Edit item",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    return false
+                }
+            })
+            //displaying the popup
+            //displaying the popup
+            popup.show()
+        }
+        holder.cardView.setOnClickListener {
+
+        }
 
     }
 
