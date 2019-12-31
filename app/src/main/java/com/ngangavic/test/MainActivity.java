@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.rv.RVActivity;
+import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
 import org.json.JSONException;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonStkPush;
     Button buttonBinary;
     Button button_rv;
+    Button buttonSharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         buttonStkPush = findViewById(R.id.buttonStkPush);
         buttonBinary=findViewById(R.id.buttonBinary);
         button_rv=findViewById(R.id.button_rv);
+        buttonSharedPreference=findViewById(R.id.buttonSharedPreference);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +79,12 @@ mpesa();
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RVActivity.class));
+            }
+        });
+        buttonSharedPreference.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SharedPrefsActivity.class));
             }
         });
 
