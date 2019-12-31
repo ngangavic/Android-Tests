@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.ngangavic.test.R
 
@@ -16,6 +17,8 @@ class SharedPrefsActivity : AppCompatActivity() {
     lateinit var editTextTown:EditText
     lateinit var editTextPhone:EditText
     lateinit var buttonSave:Button
+    lateinit var buttonRead:Button
+    lateinit var textViewDisplay:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,8 @@ class SharedPrefsActivity : AppCompatActivity() {
         editTextTown=findViewById(R.id.editTextTown)
         editTextPhone=findViewById(R.id.editTextPhone)
         buttonSave=findViewById(R.id.buttonSave)
+        buttonRead=findViewById(R.id.buttonRead)
+        textViewDisplay=findViewById(R.id.textViewDisplay)
 
         val sharedPref = applicationContext.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE)
@@ -45,6 +50,11 @@ class SharedPrefsActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext,"Saved",Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        buttonRead.setOnClickListener {
+            val name = sharedPref.getString(getString(R.string.name),"null")
+            textViewDisplay.text=name
         }
     }
 }
