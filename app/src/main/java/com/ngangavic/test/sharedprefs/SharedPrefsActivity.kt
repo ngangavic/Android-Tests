@@ -48,6 +48,12 @@ class SharedPrefsActivity : AppCompatActivity() {
                 sharedPreferences.save(getString(R.string.age), editTextAge.text.toString())
                 sharedPreferences.save(getString(R.string.town), editTextTown.text.toString())
                 sharedPreferences.save(getString(R.string.phone), editTextPhone.text.toString())
+
+                sharedPreferences.save2(getString(R.string.name), editTextName.text.toString())
+                sharedPreferences.save2(getString(R.string.year), editTextYear.text.toString())
+                sharedPreferences.save2(getString(R.string.age), editTextAge.text.toString())
+                sharedPreferences.save2(getString(R.string.town), editTextTown.text.toString())
+                sharedPreferences.save2(getString(R.string.phone), editTextPhone.text.toString())
                 Toast.makeText(applicationContext,"Saved",Toast.LENGTH_SHORT).show()
 //                with(sharedPref.edit()) {
 //                    putString(getString(R.string.name), editTextName.text.toString())
