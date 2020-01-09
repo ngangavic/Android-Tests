@@ -100,6 +100,13 @@ public class FragmentOne extends Fragment {
     }
 
     private void openScanner() {
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                Fragment fragmentPrev = getFragmentManager().findFragmentById(R.id.scanner_layout);
+                if (fragmentPrev != null){
+                    fragmentTransaction.remove(fragmentPrev);
+                }
+                ScannerDialog scannerDialog = new ScannerDialog();
+                scannerDialog.show(fragmentTransaction,"scanner");
 
     }
 

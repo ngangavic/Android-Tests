@@ -2,6 +2,9 @@ package com.ngangavic.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -10,6 +13,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ngangavic.test.fragment.FragmentActivity;
+import com.ngangavic.test.fragment.ScannerDialog;
+import com.ngangavic.test.fragment.ScannerFragment;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
@@ -87,6 +92,36 @@ mpesa();
                 startActivity(new Intent(MainActivity.this, SharedPrefsActivity.class));
             }
         });
+
+        buttonScanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openScanner();
+//                bCodeReader();
+            }
+
+        });
+
+    }
+
+    private void openScanner() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+       Fragment fragmentPrev = getSupportFragmentManager().findFragmentById(R.id.scanner_layout);
+       // Fragment fragmentPrev = getFragmentManager().findFragmentById(R.id.scanner_layout);
+        if (fragmentPrev != null){
+            fragmentTransaction.remove(fragmentPrev);
+        }
+        ScannerDialog scannerDialog = new ScannerDialog();
+        scannerDialog.show(fragmentTransaction,"scanner");
+
+    }
+
+    private ScannerFragment bCodeReader() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        ScannerFragment scannerFragment = new ScannerFragment();
+        fragmentTransaction.replace(R.id.ac_main,scannerFragment);
+        fragmentTransaction.commit();
+        return scannerFragment;
 
     }
 
