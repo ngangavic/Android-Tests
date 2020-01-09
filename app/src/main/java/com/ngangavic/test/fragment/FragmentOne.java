@@ -69,6 +69,7 @@ public class FragmentOne extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Button buttonScanner=view.findViewById(R.id.buttonScanner);
         Button btnPassData = (Button) view.findViewById(R.id.button2);
 
         btnPassData.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,13 @@ public class FragmentOne extends Fragment {
             public void onClick(View v) {
 //                SM.sendData("AM victor");
                 loadFragment(new FragmentTwo("Am victor"));
+            }
+        });
+
+        buttonScanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openScanner();
             }
         });
 
@@ -89,6 +97,10 @@ public class FragmentOne extends Fragment {
 // replace the FrameLayout with new Fragment
         fragmentTransaction.replace(R.id.fragment, fragment);
         fragmentTransaction.commit(); // save the changes
+    }
+
+    private void openScanner() {
+
     }
 
     @Override
