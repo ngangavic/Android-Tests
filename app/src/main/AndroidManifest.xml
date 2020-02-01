@@ -3,8 +3,9 @@
     package="com.ngangavic.test">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -19,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".sharedprefs.SharedPrefsActivity"></activity>
+
+        <activity android:name=".sharedprefs.SharedPrefsActivity" />
         <activity android:name=".rv.RVActivity" />
         <activity android:name=".BinaryActivity" />
         <activity android:name=".fragment.FragmentActivity" />

@@ -1,17 +1,21 @@
 package com.ngangavic.test;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     Button buttonBinary;
     Button button_rv;
     Button buttonSharedPreference;
+    Button buttonConnection;
+    ConstraintLayout ac_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +54,11 @@ public class MainActivity extends AppCompatActivity {
         buttonScanner = findViewById(R.id.buttonScanner);
         buttonFragments = findViewById(R.id.buttonFragments);
         buttonStkPush = findViewById(R.id.buttonStkPush);
-        buttonBinary=findViewById(R.id.buttonBinary);
-        button_rv=findViewById(R.id.button_rv);
-        buttonSharedPreference=findViewById(R.id.buttonSharedPreference);
+        buttonBinary = findViewById(R.id.buttonBinary);
+        button_rv = findViewById(R.id.button_rv);
+        buttonSharedPreference = findViewById(R.id.buttonSharedPreference);
+        buttonConnection = findViewById(R.id.buttonConnection);
+        ac_main=findViewById(R.id.ac_main);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         buttonStkPush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-mpesa();
+                mpesa();
             }
         });
 
@@ -102,30 +110,44 @@ mpesa();
 
         });
 
+        buttonConnection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConnectivityManager ConnectionManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo=ConnectionManager.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()==true){
+                    Snackbar.make(ac_main, "Connected to Internet", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else {
+                    Snackbar.make(ac_main,"Not connected to Internet",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+                }
+            }
+        });
+
     }
 
     private void openScanner() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-       Fragment fragmentPrev = getSupportFragmentManager().findFragmentById(R.id.scanner_layout);
-       // Fragment fragmentPrev = getFragmentManager().findFragmentById(R.id.scanner_layout);
-        if (fragmentPrev != null){
+        Fragment fragmentPrev = getSupportFragmentManager().findFragmentById(R.id.scanner_layout);
+        // Fragment fragmentPrev = getFragmentManager().findFragmentById(R.id.scanner_layout);
+        if (fragmentPrev != null) {
             fragmentTransaction.remove(fragmentPrev);
         }
         ScannerDialog scannerDialog = new ScannerDialog();
-        scannerDialog.show(fragmentTransaction,"scanner");
+        scannerDialog.show(fragmentTransaction, "scanner");
 
     }
 
     private ScannerFragment bCodeReader() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         ScannerFragment scannerFragment = new ScannerFragment();
-        fragmentTransaction.replace(R.id.ac_main,scannerFragment);
+        fragmentTransaction.replace(R.id.ac_main, scannerFragment);
         fragmentTransaction.commit();
         return scannerFragment;
 
     }
 
-    private void mpesa(){
+    private void mpesa() {
         Settings.setBusiness_short_code("174379");
         Settings.setCallback_url("http://www.yourcallbackurl.com");
         Settings.setConsumer_key("AL4cs1jYio03B97Bvri5SWaPsQ1upawY");
@@ -140,10 +162,10 @@ mpesa();
         Settings.setAccount_reference("vic10020");
         Settings.setPasskey("bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
         try {
-            if (verification().equals("0")){
-                Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_LONG).show();
+            if (verification().equals("0")) {
+                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
