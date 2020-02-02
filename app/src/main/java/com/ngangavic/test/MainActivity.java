@@ -21,6 +21,7 @@ import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
+import com.ngangavic.test.webview.WebViewActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
 import org.json.JSONException;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_rv;
     Button buttonSharedPreference;
     Button buttonConnection;
+    Button buttonWebView;
     ConstraintLayout ac_main;
 
     @Override
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         button_rv = findViewById(R.id.button_rv);
         buttonSharedPreference = findViewById(R.id.buttonSharedPreference);
         buttonConnection = findViewById(R.id.buttonConnection);
+        buttonWebView = findViewById(R.id.buttonWebView);
         ac_main=findViewById(R.id.ac_main);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +124,13 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     Snackbar.make(ac_main,"Not connected to Internet",Snackbar.LENGTH_LONG).setAction("Action",null).show();
                 }
+            }
+        });
+
+        buttonWebView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, WebViewActivity.class));
             }
         });
 

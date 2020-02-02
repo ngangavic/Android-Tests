@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".internet.InternetActivity"></activity>
+        <activity android:name=".webview.WebViewActivity"></activity>
+        <activity android:name=".internet.InternetActivity" />
         <activity android:name=".sharedprefs.SharedPrefsActivity" />
         <activity android:name=".rv.RVActivity" />
         <activity android:name=".BinaryActivity" />
