@@ -1,11 +1,14 @@
 package com.ngangavic.test;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,6 +18,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonSharedPreference;
     Button buttonConnection;
     Button buttonWebView;
+    Button buttonPesaPal;
     ConstraintLayout ac_main;
 
     @Override
@@ -61,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         buttonSharedPreference = findViewById(R.id.buttonSharedPreference);
         buttonConnection = findViewById(R.id.buttonConnection);
         buttonWebView = findViewById(R.id.buttonWebView);
-        ac_main=findViewById(R.id.ac_main);
+        buttonPesaPal = findViewById(R.id.buttonPesaPal);
+        ac_main = findViewById(R.id.ac_main);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,13 +127,13 @@ public class MainActivity extends AppCompatActivity {
         buttonConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectivityManager ConnectionManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo=ConnectionManager.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected()==true){
+                ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected() == true) {
                     Snackbar.make(ac_main, "Connected to Internet", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }else {
-                    Snackbar.make(ac_main,"Not connected to Internet",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+                } else {
+                    Snackbar.make(ac_main, "Not connected to Internet", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
             }
         });
@@ -131,6 +142,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WebViewActivity.class));
+            }
+        });
+
+        buttonPesaPal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+
+// Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.101/www.android.com/pesapal/action.php",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // Display the first 500 characters of the response string.
+                                Log.d("PESAPAL",response);
+
+                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(response));
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i.setPackage("com.android.chrome");
+                                try {
+                                    startActivity(i);
+                                } catch (ActivityNotFoundException e) {
+                                    // Chrome is probably not installed
+                                    // Try with the default browser
+                                    i.setPackage(null);
+                                    startActivity(i);
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+
+// Add the request to the RequestQueue.
+                queue.add(stringRequest);
             }
         });
 

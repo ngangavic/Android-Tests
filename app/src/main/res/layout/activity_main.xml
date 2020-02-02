@@ -7,115 +7,105 @@
     android:id="@+id/ac_main"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/buttonPolo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
-        android:layout_marginLeft="157dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginRight="148dp"
-        android:text="Polo Jerry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonScanner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="123dp"
-        android:text="Scanner fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPolo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/buttonFragments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="93dp"
-        android:text="Fragments Communication"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonScanner" />
+            <Button
+                android:id="@+id/buttonPolo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="157dp"
+                android:layout_marginLeft="157dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="148dp"
+                android:layout_marginRight="148dp"
+                android:text="Polo Jerry" />
 
-    <Button
-        android:id="@+id/buttonStkPush"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="123dp"
-        android:text="Mpesa STK Push"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFragments" />
+            <Button
+                android:id="@+id/buttonWebView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="150dp"
+                android:text="Web View" />
 
-    <Button
-        android:id="@+id/buttonBinary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="171dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="152dp"
-        android:text="Binary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStkPush" />
+            <Button
+                android:id="@+id/buttonScanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="123dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="123dp"
+                android:text="Scanner fragment" />
 
-    <Button
-        android:id="@+id/button_rv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="150dp"
-        android:text="Recycler View"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBinary" />
+            <Button
+                android:id="@+id/buttonFragments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="93dp"
+                android:text="Fragments Communication" />
 
-    <Button
-        android:id="@+id/buttonSharedPreference"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="111dp"
-        android:text="Shared Preference"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_rv" />
+            <Button
+                android:id="@+id/buttonStkPush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="123dp"
+                android:text="Mpesa STK Push" />
 
-    <Button
-        android:id="@+id/buttonConnection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="132dp"
-        android:text="Check Internet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSharedPreference" />
+            <Button
+                android:id="@+id/buttonBinary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="171dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="152dp"
+                android:text="Binary" />
 
-    <Button
-        android:id="@+id/buttonWebView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="150dp"
-        android:text="Web View"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonConnection" />
+            <Button
+                android:id="@+id/button_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="150dp"
+                android:text="Recycler View" />
+
+            <Button
+                android:id="@+id/buttonSharedPreference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="134dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="111dp"
+                android:text="Shared Preference" />
+
+            <Button
+                android:id="@+id/buttonConnection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="161dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="132dp"
+                android:text="Check Internet" />
+
+            <Button
+                android:id="@+id/buttonPesaPal"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PESAPAL" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
