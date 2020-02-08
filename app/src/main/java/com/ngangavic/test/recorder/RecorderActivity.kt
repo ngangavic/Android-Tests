@@ -39,13 +39,14 @@ class RecorderActivity : AppCompatActivity() {
             val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
             ActivityCompat.requestPermissions(this, permissions, 0)
         } else {
-        output = Environment.getExternalStorageDirectory().absolutePath + "/recording.mp3"
-        mediaRecorder = MediaRecorder()
+            output = Environment.getExternalStorageDirectory().absolutePath + "/recording.mp3"
+            mediaRecorder = MediaRecorder()
 
-        mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
-        mediaRecorder?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-        mediaRecorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-        mediaRecorder?.setOutputFile(output)
+            mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
+            mediaRecorder?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+            mediaRecorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            mediaRecorder?.setOutputFile(output)
+        }
 
         buttonStart.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this,
@@ -65,12 +66,18 @@ class RecorderActivity : AppCompatActivity() {
         buttonStop.setOnClickListener {
             stopRecording()
         }
-    }
 
     }
 
     private fun stopRecording() {
-
+        if (state) {
+            mediaRecorder?.stop()
+            mediaRecorder?.release()
+            state = false
+            Snackbar.make(layoutRecord, "Recording stopped!", Snackbar.LENGTH_SHORT).show()
+        } else {
+            Snackbar.make(layoutRecord, "You are not recording right now!", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun pauseRecording() {
