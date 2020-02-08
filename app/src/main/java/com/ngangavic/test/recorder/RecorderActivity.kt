@@ -7,6 +7,7 @@ import android.media.MediaRecorder
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -50,6 +51,7 @@ class RecorderActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, permissions, 0)
         } else {
             output = Environment.getExternalStorageDirectory().absolutePath + "/recording.mp3"
+            Log.d("PATH",output)
             mediaRecorder = MediaRecorder()
 
             mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
