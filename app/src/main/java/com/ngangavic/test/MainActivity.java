@@ -30,6 +30,7 @@ import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
+import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.webview.WebViewActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonPesaPal;
     ConstraintLayout ac_main;
     Button buttonRecorder;
+    Button buttonService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         buttonWebView = findViewById(R.id.buttonWebView);
         buttonPesaPal = findViewById(R.id.buttonPesaPal);
         buttonRecorder=findViewById(R.id.buttonRecorder);
+        buttonService=findViewById(R.id.buttonService);
         ac_main = findViewById(R.id.ac_main);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,23 +155,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-
-// Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.101/www.android.com/pesapal/action.php",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
                                 Log.d("PESAPAL", response);
-
                                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(response));
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 i.setPackage("com.android.chrome");
                                 try {
                                     startActivity(i);
                                 } catch (ActivityNotFoundException e) {
-                                    // Chrome is probably not installed
-                                    // Try with the default browser
                                     i.setPackage(null);
                                     startActivity(i);
                                 }
@@ -180,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-// Add the request to the RequestQueue.
                 queue.add(stringRequest);
             }
         });
@@ -189,6 +185,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,RecorderActivity.class));
+            }
+        });
+
+        buttonService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ServicesActivity.class));
             }
         });
 
