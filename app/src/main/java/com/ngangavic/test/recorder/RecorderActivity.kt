@@ -3,9 +3,12 @@ package com.ngangavic.test.recorder
 import android.Manifest
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.view.View
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
@@ -32,6 +35,12 @@ class RecorderActivity : AppCompatActivity() {
         buttonStop = findViewById(R.id.buttonStop)
         buttonPause = findViewById(R.id.buttonPause)
         layoutRecord = findViewById(R.id.layoutRecord)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            buttonPause.visibility=View.VISIBLE
+        }else{
+            buttonPause.visibility=View.GONE
+        }
 
         if (ContextCompat.checkSelfPermission(this,
                         Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
@@ -80,8 +89,29 @@ class RecorderActivity : AppCompatActivity() {
         }
     }
 
-    private fun pauseRecording() {
 
+    private fun pauseRecording() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (state) {
+                if (!recordingStopped) {
+                    Snackbar.make(layoutRecord, "Stopped!", Snackbar.LENGTH_SHORT).show()
+                    mediaRecorder?.pause()
+                    recordingStopped = true
+                    buttonPause.text = "Resume"
+                } else {
+                    resumeRecording()
+                }
+            }
+        }
+    }
+
+    private fun resumeRecording() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Snackbar.make(layoutRecord, "Resume!", Snackbar.LENGTH_SHORT).show()
+            mediaRecorder?.resume()
+            buttonPause.text = "Pause"
+            recordingStopped = false
+        }
     }
 
     private fun startRecording() {
