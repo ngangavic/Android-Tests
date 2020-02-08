@@ -28,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
+import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.webview.WebViewActivity;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonWebView;
     Button buttonPesaPal;
     ConstraintLayout ac_main;
+    Button buttonRecorder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         buttonConnection = findViewById(R.id.buttonConnection);
         buttonWebView = findViewById(R.id.buttonWebView);
         buttonPesaPal = findViewById(R.id.buttonPesaPal);
+        buttonRecorder=findViewById(R.id.buttonRecorder);
         ac_main = findViewById(R.id.ac_main);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 // Display the first 500 characters of the response string.
-                                Log.d("PESAPAL",response);
+                                Log.d("PESAPAL", response);
 
                                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(response));
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -179,6 +182,13 @@ public class MainActivity extends AppCompatActivity {
 
 // Add the request to the RequestQueue.
                 queue.add(stringRequest);
+            }
+        });
+
+        buttonRecorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,RecorderActivity.class));
             }
         });
 
