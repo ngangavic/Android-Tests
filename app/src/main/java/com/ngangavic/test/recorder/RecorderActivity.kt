@@ -1,6 +1,7 @@
 package com.ngangavic.test.recorder
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Build
@@ -8,12 +9,12 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.widget.Button
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.ngangavic.test.MainActivity
 import com.ngangavic.test.R
 
 class RecorderActivity : AppCompatActivity() {
@@ -37,9 +38,9 @@ class RecorderActivity : AppCompatActivity() {
         layoutRecord = findViewById(R.id.layoutRecord)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            buttonPause.visibility=View.VISIBLE
-        }else{
-            buttonPause.visibility=View.GONE
+            buttonPause.visibility = View.VISIBLE
+        } else {
+            buttonPause.visibility = View.GONE
         }
 
         if (ContextCompat.checkSelfPermission(this,
@@ -123,6 +124,25 @@ class RecorderActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             Snackbar.make(layoutRecord, "Recording failed", Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode) {
+            0 -> {
+                // If request is cancelled, the result arrays are empty.
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // permission was granted, yay! Do the
+                } else {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+                return
+            }
+
+            else -> {
+                // Ignore all other requests.
+            }
         }
     }
 }
