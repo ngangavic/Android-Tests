@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout ac_main;
     Button buttonRecorder;
     Button buttonService;
+    Button buttonTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPesaPal = findViewById(R.id.buttonPesaPal);
         buttonRecorder=findViewById(R.id.buttonRecorder);
         buttonService=findViewById(R.id.buttonService);
+        buttonTheme=findViewById(R.id.buttonTheme);
         ac_main = findViewById(R.id.ac_main);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +195,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ServicesActivity.class));
+            }
+        });
+
+        buttonTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
             }
         });
 
