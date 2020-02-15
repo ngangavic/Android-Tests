@@ -29,6 +29,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
+import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.service.ServicesActivity;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonRecorder;
     Button buttonService;
     Button buttonTheme;
+    Button buttonMaps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         buttonService=findViewById(R.id.buttonService);
         buttonTheme=findViewById(R.id.buttonTheme);
         ac_main = findViewById(R.id.ac_main);
+        buttonMaps =findViewById(R.id.buttonMaps);
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,6 +209,13 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
+            }
+        });
+
+        buttonMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
             }
         });
 
