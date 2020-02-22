@@ -5,27 +5,40 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ngangavic.test.R
 
 class PDFDownloadActivity : AppCompatActivity() {
 
-    lateinit var editTextUrl:EditText
-    lateinit var buttonDownload:Button
+    lateinit var editTextUrl: EditText
+    lateinit var buttonDownload: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdfdownload)
 
-        editTextUrl=findViewById(R.id.editTextUrl)
-        buttonDownload=findViewById(R.id.buttonDownload)
+        editTextUrl = findViewById(R.id.editTextUrl)
+        buttonDownload = findViewById(R.id.buttonDownload)
+
+        requestPermissions()
+
+        buttonDownload.setOnClickListener {
+            if (TextUtils.isEmpty(editTextUrl.text.toString())) {
+                editTextUrl.requestFocus()
+                editTextUrl.error = "Cannot be empty"
+            } else {
+                DownloadTask(this, editTextUrl.text.toString())
+            }
+        }
+
     }
 
     private fun requestPermissions(): Boolean {
