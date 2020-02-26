@@ -50,4 +50,7 @@ dependencies {
 
     //context menu 
     implementation 'com.github.Yalantis:Context-Menu.Android:1.1.4'
+
+    //light progress
+    implementation 'com.bitvale:lightprogress:1.0.0'
 }
