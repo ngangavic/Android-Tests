@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
+import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonTheme;
     Button buttonMaps;
     Button buttonDownloadPdf;
+    Button buttonContextMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         ac_main = findViewById(R.id.ac_main);
         buttonMaps =findViewById(R.id.buttonMaps);
         buttonDownloadPdf=findViewById(R.id.buttonDownloadPdf);
+        buttonContextMenu=findViewById(R.id.buttonContextMenu);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,6 +231,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, PDFDownloadActivity.class));
+            }
+        });
+
+        buttonContextMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ContextActivity.class));
             }
         });
 
