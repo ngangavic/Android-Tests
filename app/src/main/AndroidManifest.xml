@@ -27,6 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".contextmenu.ContextActivity"></activity>
         <activity android:name=".download.PDFDownloadActivity" />
 
         <meta-data
@@ -45,7 +46,8 @@
         <activity android:name=".BinaryActivity" />
         <activity android:name=".fragment.FragmentActivity" />
         <activity android:name=".PoloActivity" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
