@@ -27,8 +27,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".contextmenu.ContextActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".lightprogress.LightProgressActivity"></activity>
+        <activity
+            android:name=".contextmenu.ContextActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".download.PDFDownloadActivity" />
 
         <meta-data

@@ -32,6 +32,7 @@ import com.ngangavic.test.download.PDFDownloadActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
+import com.ngangavic.test.lightprogress.LightProgressActivity;
 import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonMaps;
     Button buttonDownloadPdf;
     Button buttonContextMenu;
+    Button buttonLightProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMaps =findViewById(R.id.buttonMaps);
         buttonDownloadPdf=findViewById(R.id.buttonDownloadPdf);
         buttonContextMenu=findViewById(R.id.buttonContextMenu);
+        buttonLightProgress=findViewById(R.id.buttonLightProgress);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,6 +242,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ContextActivity.class));
+            }
+        });
+
+        buttonLightProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LightProgressActivity.class));
             }
         });
 

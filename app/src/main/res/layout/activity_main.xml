@@ -161,6 +161,15 @@
             android:layout_column="1"
             android:layout_gravity="center"
             android:text="Fancy Context Menu" />
+
+        <Button
+            android:id="@+id/buttonLightProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="8"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            android:text="Light progress bar" />
     </GridLayout>
 
 
