@@ -1,4 +1,4 @@
-package com.ngangavic.test.lightprogress
+package com.ngangavic.test.fancyprogress
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,9 +12,6 @@ class LightProgressActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_light_progress)
         light=findViewById(R.id.light)
-        light.setOnClickListener {
-            if (!light.isOn()) light.on()
-            else light.off()
-        }
+        light.on()
     }
 }

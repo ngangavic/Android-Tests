@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".lightprogress.LightProgressActivity"></activity>
+        <activity android:name=".fancyprogress.LightProgressActivity"
+            android:theme="@style/AppTheme.LightProgress"></activity>
         <activity
             android:name=".contextmenu.ContextActivity"
             android:theme="@style/AppTheme.NoActionBar" />

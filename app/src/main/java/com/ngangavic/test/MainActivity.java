@@ -32,7 +32,7 @@ import com.ngangavic.test.download.PDFDownloadActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
-import com.ngangavic.test.lightprogress.LightProgressActivity;
+import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
