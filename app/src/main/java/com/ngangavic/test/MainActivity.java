@@ -38,6 +38,7 @@ import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
+import com.ngangavic.test.toast.ToastActivity;
 import com.ngangavic.test.webview.WebViewActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonDownloadPdf;
     Button buttonContextMenu;
     Button buttonLightProgress;
+    Button buttonToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         buttonDownloadPdf=findViewById(R.id.buttonDownloadPdf);
         buttonContextMenu=findViewById(R.id.buttonContextMenu);
         buttonLightProgress=findViewById(R.id.buttonLightProgress);
+        buttonToast=findViewById(R.id.buttonToast);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,6 +252,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, LightProgressActivity.class));
+            }
+        });
+
+        buttonToast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ToastActivity.class));
             }
         });
 
