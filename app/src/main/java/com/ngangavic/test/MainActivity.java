@@ -34,6 +34,7 @@ import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
 import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.maps.MapsActivity;
+import com.ngangavic.test.notifications.NotificationActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.service.ServicesActivity;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonContextMenu;
     Button buttonLightProgress;
     Button buttonToast;
+    Button buttonNotifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         buttonContextMenu=findViewById(R.id.buttonContextMenu);
         buttonLightProgress=findViewById(R.id.buttonLightProgress);
         buttonToast=findViewById(R.id.buttonToast);
+        buttonNotifications=findViewById(R.id.buttonNotifications);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,6 +262,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ToastActivity.class));
+            }
+        });
+
+        buttonNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, NotificationActivity.class));
             }
         });
 
