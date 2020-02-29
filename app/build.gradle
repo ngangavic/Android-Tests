@@ -54,4 +54,6 @@ dependencies {
 
     //light progress
     implementation 'com.bitvale:lightprogress:1.0.0'
+
+    implementation "com.android.support:support-compat:28.0.0"
 }
