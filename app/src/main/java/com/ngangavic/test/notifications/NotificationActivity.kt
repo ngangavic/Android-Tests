@@ -2,7 +2,9 @@ package com.ngangavic.test.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +18,7 @@ class NotificationActivity : AppCompatActivity() {
 
     lateinit var buttonSimpleNotification: Button
     lateinit var buttonExpandableNotification: Button
+    lateinit var buttonNotificationAction: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,7 @@ class NotificationActivity : AppCompatActivity() {
 
         buttonSimpleNotification = findViewById(R.id.buttonSimpleNotification)
         buttonExpandableNotification = findViewById(R.id.buttonExpandableNotification)
+        buttonNotificationAction = findViewById(R.id.buttonNotificationAction)
 
         buttonSimpleNotification.setOnClickListener {
             simpleNotification()
@@ -31,6 +35,30 @@ class NotificationActivity : AppCompatActivity() {
 
         buttonExpandableNotification.setOnClickListener {
             createExpandableNotification()
+        }
+
+        buttonNotificationAction.setOnClickListener {
+            createNotificationWithAction()
+        }
+    }
+
+    private fun createNotificationWithAction() {
+        val intent = Intent()
+        intent.setAction(Intent.ACTION_SEND)
+        intent.putExtra(Intent.EXTRA_TEXT, "I opened WhatsApp from a notification.");
+        intent.setType("text/plain");
+        intent.setPackage("com.whatsapp")
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        val builder = NotificationCompat.Builder(this, "1")
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("Notification")
+                .setContentText("Click here to open WhatsApp.")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+        with(NotificationManagerCompat.from(this)) {
+            notify(1000, builder.build())
         }
     }
 
