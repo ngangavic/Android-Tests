@@ -1,5 +1,6 @@
 package com.ngangavic.test.notifications
 
+import android.app.Notification.EXTRA_NOTIFICATION_ID
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -13,12 +14,14 @@ import android.widget.Button
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.ngangavic.test.R
+import com.ngangavic.test.service.MyService
 
 class NotificationActivity : AppCompatActivity() {
 
     lateinit var buttonSimpleNotification: Button
     lateinit var buttonExpandableNotification: Button
     lateinit var buttonNotificationAction: Button
+    lateinit var buttonNotificationButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,7 @@ class NotificationActivity : AppCompatActivity() {
         buttonSimpleNotification = findViewById(R.id.buttonSimpleNotification)
         buttonExpandableNotification = findViewById(R.id.buttonExpandableNotification)
         buttonNotificationAction = findViewById(R.id.buttonNotificationAction)
+        buttonNotificationButton = findViewById(R.id.buttonNotificationButton)
 
         buttonSimpleNotification.setOnClickListener {
             simpleNotification()
@@ -40,11 +44,31 @@ class NotificationActivity : AppCompatActivity() {
         buttonNotificationAction.setOnClickListener {
             createNotificationWithAction()
         }
+
+        buttonNotificationButton.setOnClickListener {
+            createNotificationWithButton()
+        }
+    }
+
+    private fun createNotificationWithButton(){
+        val playIntent = Intent(this, MyService::class.java)
+        val playPendingIntent: PendingIntent =
+                PendingIntent.getService(this, 0, playIntent, 0)
+        val builder = NotificationCompat.Builder(this, "1")
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("Notification")
+                .setContentText("Play some music? Click the button below.")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .addAction(R.drawable.ic_play, getString(R.string.play),
+                        playPendingIntent)
+        with(NotificationManagerCompat.from(this)) {
+            notify(1000, builder.build())
+        }
     }
 
     private fun createNotificationWithAction() {
         val intent = Intent()
-        intent.setAction(Intent.ACTION_SEND)
+        intent.action = Intent.ACTION_SEND
         intent.putExtra(Intent.EXTRA_TEXT, "I opened WhatsApp from a notification.");
         intent.setType("text/plain");
         intent.setPackage("com.whatsapp")
