@@ -25,4 +25,8 @@ Features availbale:-
 
 11. Text to binary conversion.
 
+12. Toasts(Set gravity and custom toasts).
+
+13. Notifications.
+
 Feel free to use my code. Happy coding 💻
