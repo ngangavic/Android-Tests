@@ -16,5 +16,9 @@
     <string name="channel_name">Notification Test</string>
     <string name="channel_description">Notification Test for android apps</string>
     <string name="play">Play</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>
