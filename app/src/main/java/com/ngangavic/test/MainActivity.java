@@ -27,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 //import com.ngangavic.test.conextmenutest.TestActivity;
+import com.ngangavic.test.bottomnav.BottomNavigationActivity;
 import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonLightProgress;
     Button buttonToast;
     Button buttonNotifications;
+    Button buttonBottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLightProgress=findViewById(R.id.buttonLightProgress);
         buttonToast=findViewById(R.id.buttonToast);
         buttonNotifications=findViewById(R.id.buttonNotifications);
+        buttonBottomNav=findViewById(R.id.buttonBottomNav);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -269,6 +272,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+            }
+        });
+
+        buttonBottomNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, BottomNavigationActivity.class));
             }
         });
 
