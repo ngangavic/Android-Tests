@@ -34,6 +34,7 @@ import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
 import com.ngangavic.test.fancyprogress.LightProgressActivity;
+import com.ngangavic.test.jobscheduler.JobSchedulerActivity;
 import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.notifications.NotificationActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonToast;
     Button buttonNotifications;
     Button buttonBottomNav;
+    Button buttonJobScheduler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,17 +96,18 @@ public class MainActivity extends AppCompatActivity {
         buttonConnection = findViewById(R.id.buttonConnection);
         buttonWebView = findViewById(R.id.buttonWebView);
         buttonPesaPal = findViewById(R.id.buttonPesaPal);
-        buttonRecorder=findViewById(R.id.buttonRecorder);
-        buttonService=findViewById(R.id.buttonService);
-        buttonTheme=findViewById(R.id.buttonTheme);
+        buttonRecorder = findViewById(R.id.buttonRecorder);
+        buttonService = findViewById(R.id.buttonService);
+        buttonTheme = findViewById(R.id.buttonTheme);
         ac_main = findViewById(R.id.ac_main);
-        buttonMaps =findViewById(R.id.buttonMaps);
-        buttonDownloadPdf=findViewById(R.id.buttonDownloadPdf);
-        buttonContextMenu=findViewById(R.id.buttonContextMenu);
-        buttonLightProgress=findViewById(R.id.buttonLightProgress);
-        buttonToast=findViewById(R.id.buttonToast);
-        buttonNotifications=findViewById(R.id.buttonNotifications);
-        buttonBottomNav=findViewById(R.id.buttonBottomNav);
+        buttonMaps = findViewById(R.id.buttonMaps);
+        buttonDownloadPdf = findViewById(R.id.buttonDownloadPdf);
+        buttonContextMenu = findViewById(R.id.buttonContextMenu);
+        buttonLightProgress = findViewById(R.id.buttonLightProgress);
+        buttonToast = findViewById(R.id.buttonToast);
+        buttonNotifications = findViewById(R.id.buttonNotifications);
+        buttonBottomNav = findViewById(R.id.buttonBottomNav);
+        buttonJobScheduler = findViewById(R.id.buttonJobScheduler);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
         buttonRecorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,RecorderActivity.class));
+                startActivity(new Intent(MainActivity.this, RecorderActivity.class));
             }
         });
 
@@ -225,9 +228,9 @@ public class MainActivity extends AppCompatActivity {
         buttonTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }else{
+                } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
             }
@@ -280,6 +283,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(MainActivity.this, BottomNavigationActivity.class));
+            }
+        });
+
+        buttonJobScheduler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, JobSchedulerActivity.class));
             }
         });
 
