@@ -1,16 +1,15 @@
 package com.ngangavic.test.notifications
 
-import android.app.Notification.EXTRA_NOTIFICATION_ID
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.ngangavic.test.R
@@ -50,7 +49,7 @@ class NotificationActivity : AppCompatActivity() {
         }
     }
 
-    private fun createNotificationWithButton(){
+    private fun createNotificationWithButton() {
         val playIntent = Intent(this, MyService::class.java)
         val playPendingIntent: PendingIntent =
                 PendingIntent.getService(this, 0, playIntent, 0)

@@ -1,14 +1,13 @@
 package com.ngangavic.test.rv
 
 import android.content.Context
-import android.graphics.*
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.DefaultRetryPolicy
@@ -19,30 +18,29 @@ import com.android.volley.toolbox.Volley
 import com.ngangavic.test.R
 import org.json.JSONArray
 import org.json.JSONObject
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
 class RVActivity : AppCompatActivity() {
-    lateinit var rv_test:RecyclerView
-    lateinit var progressBar:ProgressBar
+    lateinit var rv_test: RecyclerView
+    lateinit var progressBar: ProgressBar
     private var peopleList: MutableList<People>? = null
     private var recyclerViewAdapter: PeopleAdapter? = null
     lateinit var queue: RequestQueue
-    var url_load:String = "http://192.168.1.102/test/android-load.php"
-    var url_delete:String = "http://192.168.1.102/test/android-delete.php"
+    var url_load: String = "http://192.168.1.102/test/android-load.php"
+    var url_delete: String = "http://192.168.1.102/test/android-delete.php"
     var p = Paint()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rv)
-        rv_test=findViewById(R.id.rv_test)
+        rv_test = findViewById(R.id.rv_test)
         rv_test.layoutManager = LinearLayoutManager(applicationContext)
-        progressBar=findViewById(R.id.progressBar)
+        progressBar = findViewById(R.id.progressBar)
         peopleList = ArrayList()
         queue = Volley.newRequestQueue(applicationContext)
 
-        progressBar.visibility= View.VISIBLE
-        rv_test.visibility= View.GONE
+        progressBar.visibility = View.VISIBLE
+        rv_test.visibility = View.GONE
         loadData(applicationContext)
     }
 
@@ -75,8 +73,8 @@ class RVActivity : AppCompatActivity() {
                             peopleList as ArrayList<People>
                     )
                     rv_test.adapter = recyclerViewAdapter
-                    progressBar.visibility= View.GONE
-                    rv_test.visibility= View.VISIBLE
+                    progressBar.visibility = View.GONE
+                    rv_test.visibility = View.VISIBLE
 
                 },
                 Response.ErrorListener { error ->
@@ -98,7 +96,7 @@ class RVActivity : AppCompatActivity() {
         queue.add(str)
     }
 
-    fun loadDelete(id:String,context: Context) {
+    fun loadDelete(id: String, context: Context) {
         queue = Volley.newRequestQueue(context)
         val str = object : StringRequest(
                 Method.POST, url_delete,
@@ -106,10 +104,10 @@ class RVActivity : AppCompatActivity() {
                     Log.d("DATA:", response.toString())
 
                     val jsonObject = JSONObject(response)
-                    if (jsonObject.getString("report")=="0"){
-                        Toast.makeText(context,"Item deleted",Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(context,"Item not deleted",Toast.LENGTH_SHORT).show()
+                    if (jsonObject.getString("report") == "0") {
+                        Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Item not deleted", Toast.LENGTH_SHORT).show()
                     }
                 },
                 Response.ErrorListener { error ->

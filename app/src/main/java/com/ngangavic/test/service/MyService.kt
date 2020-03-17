@@ -11,10 +11,9 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.snackbar.Snackbar
 import com.ngangavic.test.R
 import org.json.JSONObject
-import java.util.HashMap
+import java.util.*
 
 class MyService : Service() {
 
@@ -26,7 +25,7 @@ class MyService : Service() {
     }
 
     override fun onCreate() {
-        queue= Volley.newRequestQueue(this)
+        queue = Volley.newRequestQueue(this)
         Toast.makeText(this, "Service created!", Toast.LENGTH_SHORT).show()
         player = MediaPlayer.create(this, R.raw.laugh)
         player.isLooping = false
@@ -44,7 +43,7 @@ class MyService : Service() {
         queue.cancelAll(this)
     }
 
-    private fun sendRequest(){
+    private fun sendRequest() {
         val str = object : StringRequest(
                 Method.POST, "https://your url",
                 Response.Listener { response ->

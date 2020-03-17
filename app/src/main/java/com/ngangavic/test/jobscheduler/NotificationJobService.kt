@@ -18,7 +18,7 @@ import com.ngangavic.test.R
 class NotificationJobService : JobService() {
 
     lateinit var notificationManager: NotificationManager
-    var PRIMARY_CHANNEL_ID: String = "primary_notification_channel";
+    var PRIMARY_CHANNEL_ID: String = "primary_notification_channel"
 
     override fun onStopJob(params: JobParameters?): Boolean {
         return true

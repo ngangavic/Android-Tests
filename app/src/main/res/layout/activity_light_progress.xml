@@ -2,9 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root_container"
     android:orientation="vertical"
     tools:context=".fancyprogress.LightProgressActivity">
 
@@ -12,10 +12,10 @@
         android:id="@+id/light"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:text="Loading..."
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_size"
-        android:text="Loading..."
-        android:layout_gravity="center"
         app:light_color="@color/light_color" />
 
 </FrameLayout>

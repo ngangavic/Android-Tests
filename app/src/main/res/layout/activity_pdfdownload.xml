@@ -27,8 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="How it works"
-        android:textSize="18sp"
         android:textColor="#404040"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -38,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="16sp"
         android:text="Enter URL pointing to the PDF document in the input box below and click download. The document will be downloaded to your phone storage."
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />

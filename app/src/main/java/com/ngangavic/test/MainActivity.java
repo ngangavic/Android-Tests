@@ -26,14 +26,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
-//import com.ngangavic.test.conextmenutest.TestActivity;
 import com.ngangavic.test.bottomnav.BottomNavigationActivity;
 import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
+import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
-import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.jobscheduler.JobSchedulerActivity;
 import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.notifications.NotificationActivity;
@@ -50,6 +49,8 @@ import org.json.JSONException;
 import java.io.IOException;
 
 import static com.ngangavictor.mpesa.stkpush.Mpesa.verification;
+
+//import com.ngangavic.test.conextmenutest.TestActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonPolo;

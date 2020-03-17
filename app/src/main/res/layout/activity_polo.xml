@@ -7,17 +7,16 @@
     tools:context=".PoloActivity">
 
 
-
-        <ImageView
-            android:id="@+id/img_login_couple"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:foreground="#CCe8a2ab"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/couple_image" />
+    <ImageView
+        android:id="@+id/img_login_couple"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:foreground="#CCe8a2ab"
+        android:scaleType="fitXY"
+        android:src="@drawable/couple_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -79,8 +78,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="18sp"
         android:text="Find your perfect match"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_view_logo" />
@@ -100,12 +99,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_find_match">
 
         <EditText
-            android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
             android:background="@android:color/transparent"
-            />
+            android:hint="Email"
+            android:padding="8dp" />
 
 
     </androidx.cardview.widget.CardView>
@@ -124,11 +122,11 @@
         app:layout_constraintTop_toBottomOf="@+id/card_sign_in_email">
 
         <EditText
-            android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:hint="Password"
-            android:background="@android:color/transparent"/>
+            android:padding="8dp" />
 
 
     </androidx.cardview.widget.CardView>
@@ -159,9 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password" />
 
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!--    android:background="?android:attr/listDivider"-->
+    <!--    android:background="?android:attr/listDivider"-->

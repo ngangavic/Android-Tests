@@ -2,7 +2,6 @@ package com.ngangavic.test.internet
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +10,12 @@ import com.ngangavic.test.R
 import kotlinx.android.synthetic.main.activity_internet.*
 
 class InternetActivity : AppCompatActivity() {
-    lateinit var buttonConnection:Button
+    lateinit var buttonConnection: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_internet)
-        buttonConnection=findViewById(R.id.buttonConnection)
+        buttonConnection = findViewById(R.id.buttonConnection)
 
         buttonConnection.setOnClickListener {
 
