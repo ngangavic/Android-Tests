@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioGroup
+import android.widget.Switch
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.ngangavic.test.R
@@ -18,6 +19,8 @@ class JobSchedulerActivity : AppCompatActivity() {
     lateinit var buttonScheduleJob: Button
     lateinit var buttonCancelJob: Button
     lateinit var jobScheduler: JobScheduler
+    lateinit var switchIdle:Switch
+    lateinit var switchCharging:Switch
 
     companion object {
         val JOB_ID: Int = 0
@@ -29,6 +32,8 @@ class JobSchedulerActivity : AppCompatActivity() {
         radioGroupNetwork = findViewById(R.id.radioGroupNetwork)
         buttonScheduleJob = findViewById(R.id.buttonScheduleJob)
         buttonCancelJob = findViewById(R.id.buttonCancelJob)
+        switchCharging = findViewById(R.id.switchCharging)
+        switchIdle = findViewById(R.id.switchIdle)
 
         buttonScheduleJob.setOnClickListener { scheduleJob() }
 
@@ -46,6 +51,7 @@ class JobSchedulerActivity : AppCompatActivity() {
     private fun scheduleJob() {
         val networkId = radioGroupNetwork.checkedRadioButtonId
         var networkOption = JobInfo.NETWORK_TYPE_NONE
+
         jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         when (networkId) {
             R.id.radioButtonNone -> {
@@ -61,8 +67,14 @@ class JobSchedulerActivity : AppCompatActivity() {
 
         val serviceName = ComponentName(packageName, NotificationJobService::class.java.name)
         val builder = JobInfo.Builder(JOB_ID, serviceName)
+        //network
         builder.setRequiredNetworkType(networkOption)
-        val constraintSet: Boolean = networkOption != JobInfo.NETWORK_TYPE_NONE
+
+        //charging
+        builder.setRequiresDeviceIdle(switchIdle.isChecked)
+        builder.setRequiresCharging(switchCharging.isChecked)
+
+        val constraintSet: Boolean = networkOption != JobInfo.NETWORK_TYPE_NONE|| switchCharging.isChecked || switchIdle.isChecked
         if (constraintSet) {
             val jobInfo = builder.build()
             jobScheduler.schedule(jobInfo)
@@ -70,6 +82,8 @@ class JobSchedulerActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Please set at least one constraint.",Toast.LENGTH_SHORT).show()
         }
+
+
     }
 
 
