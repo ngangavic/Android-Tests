@@ -29,4 +29,6 @@ Features availbale:-
 
 13. Notifications.
 
+14. Job Scheduler.
+
 Feel free to use my code. Happy coding 💻
