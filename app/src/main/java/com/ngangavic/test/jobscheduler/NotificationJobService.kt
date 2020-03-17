@@ -15,10 +15,10 @@ import com.ngangavic.test.MainActivity
 import com.ngangavic.test.R
 
 
-class NotificationJobService: JobService() {
+class NotificationJobService : JobService() {
 
     lateinit var notificationManager: NotificationManager
-    var PRIMARY_CHANNEL_ID:String = "primary_notification_channel";
+    var PRIMARY_CHANNEL_ID: String = "primary_notification_channel";
 
     override fun onStopJob(params: JobParameters?): Boolean {
         return true
@@ -26,7 +26,7 @@ class NotificationJobService: JobService() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartJob(params: JobParameters?): Boolean {
-createNotificationChannel()
+        createNotificationChannel()
         val contentPendingIntent = PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
         val builder: NotificationCompat.Builder = NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
                 .setContentTitle("Job Service")
@@ -44,7 +44,7 @@ createNotificationChannel()
     fun createNotificationChannel() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(PRIMARY_CHANNEL_ID,"Job Service notification",NotificationManager.IMPORTANCE_HIGH)
+            val notificationChannel = NotificationChannel(PRIMARY_CHANNEL_ID, "Job Service notification", NotificationManager.IMPORTANCE_HIGH)
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.enableVibration(true)
