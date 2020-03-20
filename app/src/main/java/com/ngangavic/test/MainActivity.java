@@ -42,6 +42,7 @@ import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.toast.ToastActivity;
 import com.ngangavic.test.webview.WebViewActivity;
+import com.ngangavic.test.workmanager.SelectActivity;
 import com.ngangavic.test.workmanager.WorkManagerActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
@@ -300,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
         buttonWorkManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WorkManagerActivity.class));
+                startActivity(new Intent(MainActivity.this, SelectActivity.class));
             }
         });
 
