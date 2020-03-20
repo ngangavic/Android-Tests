@@ -23,9 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".workmanager.WorkManagerActivity"></activity>
         <activity
             android:name=".bottomnav.BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation"></activity>
+            android:label="@string/title_activity_bottom_navigation" />
 
         <service
             android:name=".jobscheduler.NotificationJobService"

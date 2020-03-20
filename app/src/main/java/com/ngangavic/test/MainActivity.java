@@ -42,6 +42,7 @@ import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.toast.ToastActivity;
 import com.ngangavic.test.webview.WebViewActivity;
+import com.ngangavic.test.workmanager.WorkManagerActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
 import org.json.JSONException;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonNotifications;
     Button buttonBottomNav;
     Button buttonJobScheduler;
+    Button buttonWorkManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         buttonNotifications = findViewById(R.id.buttonNotifications);
         buttonBottomNav = findViewById(R.id.buttonBottomNav);
         buttonJobScheduler = findViewById(R.id.buttonJobScheduler);
+        buttonWorkManager = findViewById(R.id.buttonWorkManager);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -291,6 +294,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, JobSchedulerActivity.class));
+            }
+        });
+
+        buttonWorkManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, WorkManagerActivity.class));
             }
         });
 
