@@ -7,219 +7,236 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <GridLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/buttonPolo"
-            android:layout_width="wrap_content"
+        <GridLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Login UI" />
+            android:columnCount="2"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/buttonWebView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Web View" />
+            <Button
+                android:id="@+id/buttonPolo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Login UI" />
 
-        <Button
-            android:id="@+id/buttonScanner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Scanner fragment" />
+            <Button
+                android:id="@+id/buttonWebView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Web View" />
 
-        <Button
-            android:id="@+id/buttonFragments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Fragments Communication" />
+            <Button
+                android:id="@+id/buttonScanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Scanner fragment" />
 
-        <Button
-            android:id="@+id/buttonStkPush"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Mpesa STK Push" />
+            <Button
+                android:id="@+id/buttonFragments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Fragments Communication" />
 
-        <Button
-            android:id="@+id/buttonBinary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Binary" />
+            <Button
+                android:id="@+id/buttonStkPush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Mpesa STK Push" />
 
-        <Button
-            android:id="@+id/button_rv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Recycler View" />
+            <Button
+                android:id="@+id/buttonBinary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Binary" />
 
-        <Button
-            android:id="@+id/buttonSharedPreference"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Shared Preference" />
+            <Button
+                android:id="@+id/button_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Recycler View" />
 
-        <Button
-            android:id="@+id/buttonConnection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="4"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Check Internet" />
+            <Button
+                android:id="@+id/buttonSharedPreference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Shared Preference" />
 
-        <Button
-            android:id="@+id/buttonPesaPal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="4"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="PESAPAL" />
+            <Button
+                android:id="@+id/buttonConnection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Check Internet" />
 
-        <Button
-            android:id="@+id/buttonRecorder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="5"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Sound recorder" />
+            <Button
+                android:id="@+id/buttonPesaPal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="PESAPAL" />
 
-        <Button
-            android:id="@+id/buttonService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="5"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Android Service" />
+            <Button
+                android:id="@+id/buttonRecorder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Sound recorder" />
 
-        <Button
-            android:id="@+id/buttonTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="6"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Change Theme" />
+            <Button
+                android:id="@+id/buttonService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="5"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Android Service" />
 
-        <Button
-            android:id="@+id/buttonMaps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="6"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Maps" />
+            <Button
+                android:id="@+id/buttonTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="6"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Change Theme" />
 
-        <Button
-            android:id="@+id/buttonDownloadPdf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="7"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Download PDF"
-            tools:layout_editor_absoluteX="50dp"
-            tools:layout_editor_absoluteY="360dp" />
+            <Button
+                android:id="@+id/buttonMaps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="6"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Maps" />
 
-        <Button
-            android:id="@+id/buttonContextMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="7"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Fancy Context Menu" />
+            <Button
+                android:id="@+id/buttonDownloadPdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="7"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Download PDF"
+                tools:layout_editor_absoluteX="50dp"
+                tools:layout_editor_absoluteY="360dp" />
 
-        <Button
-            android:id="@+id/buttonLightProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="8"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Light progress bar" />
+            <Button
+                android:id="@+id/buttonContextMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="7"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Fancy Context Menu" />
 
-        <Button
-            android:id="@+id/buttonToast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="8"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Toast" />
+            <Button
+                android:id="@+id/buttonLightProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="8"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Light progress bar" />
 
-        <Button
-            android:id="@+id/buttonNotifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="9"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Notifications" />
+            <Button
+                android:id="@+id/buttonToast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="8"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Toast" />
 
-        <Button
-            android:id="@+id/buttonBottomNav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="9"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Bottom Navigation" />
+            <Button
+                android:id="@+id/buttonNotifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="9"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Notifications" />
 
-        <Button
-            android:id="@+id/buttonJobScheduler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="10"
-            android:layout_column="0"
-            android:layout_gravity="center"
-            android:text="Job Scheduler"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="490dp" />
+            <Button
+                android:id="@+id/buttonBottomNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="9"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Bottom Navigation" />
 
-        <Button
-            android:id="@+id/buttonWorkManager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="10"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:text="Work Manager" />
+            <Button
+                android:id="@+id/buttonJobScheduler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="10"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Job Scheduler"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="490dp" />
+
+            <Button
+                android:id="@+id/buttonWorkManager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="10"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Work Manager" />
+
+            <Button
+                android:id="@+id/buttonGoogleAdMob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_row="11"
+                android:layout_column="0"
+                android:text="Google AdMob" />
 
 
-    </GridLayout>
-
+        </GridLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

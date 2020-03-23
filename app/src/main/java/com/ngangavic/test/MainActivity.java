@@ -33,6 +33,7 @@ import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
+import com.ngangavic.test.googleadmob.GoogleAdMobActivity;
 import com.ngangavic.test.jobscheduler.JobSchedulerActivity;
 import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.notifications.NotificationActivity;
@@ -43,7 +44,6 @@ import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.toast.ToastActivity;
 import com.ngangavic.test.webview.WebViewActivity;
 import com.ngangavic.test.workmanager.SelectActivity;
-import com.ngangavic.test.workmanager.WorkManagerActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
 import org.json.JSONException;
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonBottomNav;
     Button buttonJobScheduler;
     Button buttonWorkManager;
+    Button buttonGoogleAdMob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         buttonBottomNav = findViewById(R.id.buttonBottomNav);
         buttonJobScheduler = findViewById(R.id.buttonJobScheduler);
         buttonWorkManager = findViewById(R.id.buttonWorkManager);
+        buttonGoogleAdMob = findViewById(R.id.buttonGoogleAdMob);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,6 +304,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SelectActivity.class));
+            }
+        });
+
+        buttonGoogleAdMob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GoogleAdMobActivity.class));
             }
         });
 
