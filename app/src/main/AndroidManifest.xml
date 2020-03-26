@@ -23,10 +23,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".fcm.CloudMessagingActivity"></activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4053013591119437~5641151139"/>
-        <activity android:name=".googleadmob.GoogleAdMobActivity"/>
+            android:value="ca-app-pub-4053013591119437~5641151139" />
+
+        <activity android:name=".googleadmob.GoogleAdMobActivity" />
         <activity android:name=".workmanager.SelectActivity" />
         <activity android:name=".workmanager.WorkManagerActivity" />
         <activity
