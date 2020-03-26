@@ -33,5 +33,8 @@
     <string name="cancel_work">Cancel Work</string>
     <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->
         WorkManager Demo -> App Permissions and grant access to Storage.</string>
+    <string name="msg_token_fmt">message token</string>
+    <string name="default_notification_channel_id">1000</string>
+    <string name="fcm_message">message for fcm</string>
 
 </resources>
