@@ -31,6 +31,7 @@ import com.ngangavic.test.bottomnav.BottomNavigationActivity;
 import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
 import com.ngangavic.test.fancyprogress.LightProgressActivity;
+import com.ngangavic.test.firebasestorage.StorageActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonJobScheduler;
     Button buttonWorkManager;
     Button buttonGoogleAdMob;
+    Button buttonFirebaseStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         buttonJobScheduler = findViewById(R.id.buttonJobScheduler);
         buttonWorkManager = findViewById(R.id.buttonWorkManager);
         buttonGoogleAdMob = findViewById(R.id.buttonGoogleAdMob);
+        buttonFirebaseStorage = findViewById(R.id.buttonFirebaseStorage);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -312,6 +315,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GoogleAdMobActivity.class));
+            }
+        });
+
+        buttonFirebaseStorage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, StorageActivity.class));
             }
         });
 

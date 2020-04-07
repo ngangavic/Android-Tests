@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".fcm.CloudMessagingActivity"></activity>
+        <activity android:name=".firebasestorage.StorageActivity"></activity>
+        <activity android:name=".fcm.CloudMessagingActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -39,8 +40,8 @@
         <service
             android:name=".jobscheduler.NotificationJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <service android:name=".notifications.MyFirebaseMessagingService"
+        <service
+            android:name=".notifications.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

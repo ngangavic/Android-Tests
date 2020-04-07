@@ -235,6 +235,15 @@
                 android:layout_column="0"
                 android:text="Google AdMob" />
 
+            <Button
+                android:id="@+id/buttonFirebaseStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="11"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Firebase Storage" />
+
 
         </GridLayout>
     </androidx.core.widget.NestedScrollView>
