@@ -90,4 +90,7 @@ dependencies {
 
     //storage
     implementation 'com.google.firebase:firebase-storage-ktx:19.1.1'
+
+    //auth
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
 }
