@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".firebasestorage.StorageActivity"></activity>
+        <activity android:name=".firebasestorage.StorageActivity"/>
         <activity android:name=".fcm.CloudMessagingActivity" />
 
         <meta-data
