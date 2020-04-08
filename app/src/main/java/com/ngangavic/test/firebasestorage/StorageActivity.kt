@@ -9,7 +9,9 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -36,6 +38,7 @@ class StorageActivity : AppCompatActivity() {
     lateinit var buttonPickImage: Button
     lateinit var buttonCamera: Button
     private lateinit var auth: FirebaseAuth
+    lateinit var editTextName:EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +49,7 @@ class StorageActivity : AppCompatActivity() {
         buttonViewImages = findViewById(R.id.buttonViewImages)
         buttonPickImage = findViewById(R.id.buttonPickImage)
         buttonCamera = findViewById(R.id.buttonCamera)
+        editTextName=findViewById(R.id.editTextName)
         storage = Firebase.storage
         auth = FirebaseAuth.getInstance()
 
@@ -99,19 +103,26 @@ class StorageActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
-        val storageRef = storage.reference.child("android-test/vic")
-        imageView.isDrawingCacheEnabled = true
-        imageView.buildDrawingCache()
-        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
-        val data = byteArrayOutputStream.toByteArray()
+        if (TextUtils.isEmpty(editTextName.text.toString())) {
+            editTextName.requestFocus()
+            editTextName.error="Required"
+        }else {
+            val storageRef = storage.reference.child("android-test/"+editTextName.text.toString())
+            imageView.isDrawingCacheEnabled = true
+            imageView.buildDrawingCache()
+            val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
+            val data = byteArrayOutputStream.toByteArray()
 
-        var uploadTask = storageRef.putBytes(data)
-        uploadTask.addOnFailureListener {
-            Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
-        }.addOnSuccessListener {
-            Toast.makeText(applicationContext, "Success", Toast.LENGTH_LONG).show()
+            var uploadTask = storageRef.putBytes(data)
+            uploadTask.addOnFailureListener {
+                Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
+            }.addOnSuccessListener {
+                imageView.setImageResource(R.drawable.ic_image)
+                editTextName.text.clear()
+                Toast.makeText(applicationContext, "Success", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
