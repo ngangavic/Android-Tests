@@ -64,6 +64,8 @@ class StorageActivity : AppCompatActivity() {
 
         buttonCamera.setOnClickListener { useCamera() }
 
+        buttonViewImages.setOnClickListener { startActivity(Intent(applicationContext,ViewActivity::class.java)) }
+
         requestPermissions()
     }
 
