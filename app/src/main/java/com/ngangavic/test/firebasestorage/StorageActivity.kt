@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -18,16 +19,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import com.ngangavic.test.R
 import com.ngangavic.test.firebasestorage.Credetials.Companion.email
 import com.ngangavic.test.firebasestorage.Credetials.Companion.password
 import java.io.ByteArrayOutputStream
 import java.io.IOException
-
 
 class StorageActivity : AppCompatActivity() {
 
@@ -38,7 +44,8 @@ class StorageActivity : AppCompatActivity() {
     lateinit var buttonPickImage: Button
     lateinit var buttonCamera: Button
     private lateinit var auth: FirebaseAuth
-    lateinit var editTextName:EditText
+    lateinit var editTextName: EditText
+    private lateinit var database: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +56,12 @@ class StorageActivity : AppCompatActivity() {
         buttonViewImages = findViewById(R.id.buttonViewImages)
         buttonPickImage = findViewById(R.id.buttonPickImage)
         buttonCamera = findViewById(R.id.buttonCamera)
-        editTextName=findViewById(R.id.editTextName)
+        editTextName = findViewById(R.id.editTextName)
         storage = Firebase.storage
         auth = FirebaseAuth.getInstance()
+        database = Firebase.database.reference
 
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(applicationContext, "SignIn success", Toast.LENGTH_LONG).show()
@@ -68,7 +76,7 @@ class StorageActivity : AppCompatActivity() {
 
         buttonCamera.setOnClickListener { useCamera() }
 
-        buttonViewImages.setOnClickListener { startActivity(Intent(applicationContext,ViewActivity::class.java)) }
+        buttonViewImages.setOnClickListener { startActivity(Intent(applicationContext, ViewActivity::class.java)) }
 
         requestPermissions()
     }
@@ -105,9 +113,9 @@ class StorageActivity : AppCompatActivity() {
     private fun uploadImage() {
         if (TextUtils.isEmpty(editTextName.text.toString())) {
             editTextName.requestFocus()
-            editTextName.error="Required"
-        }else {
-            val storageRef = storage.reference.child("android-test/"+editTextName.text.toString())
+            editTextName.error = "Required"
+        } else {
+            val storageRef = storage.reference.child("android-test/" + editTextName.text.toString())
             imageView.isDrawingCacheEnabled = true
             imageView.buildDrawingCache()
             val bitmap = (imageView.drawable as BitmapDrawable).bitmap
@@ -115,14 +123,32 @@ class StorageActivity : AppCompatActivity() {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
             val data = byteArrayOutputStream.toByteArray()
 
-            var uploadTask = storageRef.putBytes(data)
-            uploadTask.addOnFailureListener {
-                Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
-            }.addOnSuccessListener {
-                imageView.setImageResource(R.drawable.ic_image)
-                editTextName.text.clear()
-                Toast.makeText(applicationContext, "Success", Toast.LENGTH_LONG).show()
-            }
+            val uploadTask = storageRef.putBytes(data)
+
+            uploadTask.continueWithTask(object : Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+                override fun then(p0: Task<UploadTask.TaskSnapshot>): Task<Uri> {
+                    if (!p0.isSuccessful) {
+                        p0.exception?.let {
+                            throw it
+                        }
+                    }
+                    return storageRef.getDownloadUrl()
+                }
+            }).addOnCompleteListener(object : OnCompleteListener<Uri> {
+                override fun onComplete(p0: Task<Uri>) {
+                    if (p0.isSuccessful()) {
+                        val downloadUri = p0.getResult()
+                        Log.d("DOWNLOAD URi", downloadUri.toString())
+                        database.child("android-test").child(editTextName.text.toString().replace(" ", "")).child("name").setValue(editTextName.text.toString())
+                        database.child("android-test").child(editTextName.text.toString().replace(" ", "")).child("url").setValue(downloadUri.toString())
+                        imageView.setImageResource(R.drawable.ic_image)
+                        editTextName.text.clear()
+                        Toast.makeText(applicationContext, "Success!", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(applicationContext, "Failed!", Toast.LENGTH_LONG).show()
+                    }
+                }
+            })
         }
     }
 
