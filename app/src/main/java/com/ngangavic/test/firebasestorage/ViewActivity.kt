@@ -33,7 +33,7 @@ class ViewActivity : AppCompatActivity() {
 
     lateinit var recyclerView:RecyclerView
     lateinit var buttonUpload:Button
-    lateinit var progressBar:ProgressBar
+//    lateinit var progressBar:ProgressBar
     lateinit var storage: FirebaseStorage //android-test
     private var imagesList: MutableList<Image>? = null
     private var recyclerViewAdapter: ImageAdapter? = null
@@ -44,15 +44,15 @@ class ViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_view)
         recyclerView = findViewById(R.id.recyclerView)
         buttonUpload = findViewById(R.id.buttonUpload)
-        progressBar = findViewById(R.id.progressBar)
+//        progressBar = findViewById(R.id.progressBar)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        progressBar = findViewById(R.id.progressBar)
+//        progressBar = findViewById(R.id.progressBar)
         imagesList = ArrayList()
         storage = Firebase.storage
         database = Firebase.database.reference
 
-        recyclerView.visibility = View.GONE
-        buttonUpload.visibility = View.GONE
+//        recyclerView.visibility = View.GONE
+//        buttonUpload.visibility = View.GONE
 
         buttonUpload.setOnClickListener { startActivity(Intent(applicationContext, StorageActivity::class.java)) }
 
@@ -67,7 +67,7 @@ class ViewActivity : AppCompatActivity() {
                 imagesList?.clear()
                 Log.d("DATA", dataSnapshot.childrenCount.toString())
                 if (dataSnapshot.childrenCount.toString() == "0") {
-                    progressBar.visibility = View.GONE
+//                    progressBar.visibility = View.GONE
                 } else {
                     for (postSnapshot in dataSnapshot.children) {
                         Log.d("URLS", postSnapshot.child("url").value.toString())
@@ -83,8 +83,8 @@ class ViewActivity : AppCompatActivity() {
                     )
                     recyclerViewAdapter?.notifyDataSetChanged()
                     recyclerView.adapter = recyclerViewAdapter
-                    progressBar.visibility = View.GONE
-                    recyclerView.visibility = View.VISIBLE
+//                    progressBar.visibility = View.GONE
+//                    recyclerView.visibility = View.VISIBLE
                 }
             }
 

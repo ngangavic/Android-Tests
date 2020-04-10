@@ -2,6 +2,8 @@ package com.ngangavic.test.firebasestorage
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.transition.Explode
+import android.transition.Slide
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -27,6 +29,8 @@ class ViewImageActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+        window.enterTransition= Slide()
+        window.exitTransition=Explode()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_image)
 
