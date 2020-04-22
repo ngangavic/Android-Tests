@@ -38,6 +38,7 @@ import com.ngangavic.test.fragment.ScannerFragment;
 import com.ngangavic.test.googleadmob.GoogleAdMobActivity;
 import com.ngangavic.test.jobscheduler.JobSchedulerActivity;
 import com.ngangavic.test.maps.MapsActivity;
+import com.ngangavic.test.motionlayout.MotionLayoutActivity;
 import com.ngangavic.test.notifications.NotificationActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonWorkManager;
     Button buttonGoogleAdMob;
     Button buttonFirebaseStorage;
+    Button buttonMotionLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         buttonWorkManager = findViewById(R.id.buttonWorkManager);
         buttonGoogleAdMob = findViewById(R.id.buttonGoogleAdMob);
         buttonFirebaseStorage = findViewById(R.id.buttonFirebaseStorage);
+        buttonMotionLayout = findViewById(R.id.buttonMotionLayout);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -322,6 +325,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, StorageActivity.class));
+            }
+        });
+
+        buttonMotionLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MotionLayoutActivity.class));
             }
         });
 

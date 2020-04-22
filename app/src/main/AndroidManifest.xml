@@ -23,8 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".firebasestorage.ViewImageActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".motionlayout.MotionLayoutActivity"></activity>
+        <activity
+            android:name=".firebasestorage.ViewImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".firebasestorage.ViewActivity" />
         <activity android:name=".firebasestorage.StorageActivity" />
         <activity android:name=".fcm.CloudMessagingActivity" />
