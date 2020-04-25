@@ -26,7 +26,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.ngangavic.test.bottomnav.BottomNavigationActivity;
 import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
@@ -45,6 +44,7 @@ import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.toast.ToastActivity;
+import com.ngangavic.test.usehover.UseHoverActivity;
 import com.ngangavic.test.webview.WebViewActivity;
 import com.ngangavic.test.workmanager.SelectActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonGoogleAdMob;
     Button buttonFirebaseStorage;
     Button buttonMotionLayout;
+    Button buttonUseHover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         buttonGoogleAdMob = findViewById(R.id.buttonGoogleAdMob);
         buttonFirebaseStorage = findViewById(R.id.buttonFirebaseStorage);
         buttonMotionLayout = findViewById(R.id.buttonMotionLayout);
+        buttonUseHover = findViewById(R.id.buttonUseHover);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -332,6 +334,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MotionLayoutActivity.class));
+            }
+        });
+
+        buttonUseHover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, UseHoverActivity.class));
             }
         });
 

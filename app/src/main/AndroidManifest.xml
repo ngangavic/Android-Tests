@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".motionlayout.MotionLayoutActivity"></activity>
+        <activity android:name=".usehover.UseHoverActivity"></activity>
+        <activity android:name=".motionlayout.MotionLayoutActivity" />
         <activity
             android:name=".firebasestorage.ViewImageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
