@@ -93,6 +93,11 @@
         <service
             android:name=".service.MyService"
             android:enabled="true" />
+
+        <meta-data
+            android:name="com.hover.ApiKey"
+            android:value="6d35291945a13bb8ad1fe343ecc6c2f7" />
+
     </application>
 
 </manifest>
