@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".usehover.UseHoverActivity"></activity>
+        <activity android:name=".spinner.SpinnerActivity"></activity>
+        <activity android:name=".usehover.UseHoverActivity" />
         <activity android:name=".motionlayout.MotionLayoutActivity" />
         <activity
             android:name=".firebasestorage.ViewImageActivity"
@@ -97,7 +98,6 @@
         <meta-data
             android:name="com.hover.ApiKey"
             android:value="6d35291945a13bb8ad1fe343ecc6c2f7" />
-
     </application>
 
 </manifest>
