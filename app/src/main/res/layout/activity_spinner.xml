@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".spinner.SpinnerActivity">
 
+    <Spinner
+        android:id="@+id/spinnerCounty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:visibility="gone"
+        android:id="@+id/spinnerWard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
 </androidx.constraintlayout.widget.ConstraintLayout>

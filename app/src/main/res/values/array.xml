@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sub_county">
+        <item>Select County</item>
+        <item>Kilifi North</item>
+        <item>Kilifi South</item>
+        <item>Kilifi Central</item>
+        <item>Malindi Subcounty</item>
+    </string-array>
+
+    <string-array name="kilifi_north">
+        <item>Kilifi North 1</item>
+        <item>Kilifi North 2</item>
+        <item>Kilifi North 3</item>
+        <item>Kilifi North 4</item>
+        <item>Kilifi North 5</item>
+        <item>Kilifi North 6</item>
+        <item>Kilifi North 7</item>
+    </string-array>
+
+    <string-array name="kilifi_south">
+        <item>Kilifi South 1</item>
+        <item>Kilifi South 2</item>
+        <item>Kilifi South 3</item>
+        <item>Kilifi South 4</item>
+        <item>Kilifi South 5</item>
+        <item>Kilifi South 6</item>
+        <item>Kilifi South 7</item>
+    </string-array>
+
+    <string-array name="kilifi_central">
+        <item>Kilifi Central 1</item>
+        <item>Kilifi Central 2</item>
+        <item>Kilifi Central 3</item>
+        <item>Kilifi Central 4</item>
+        <item>Kilifi Central 5</item>
+        <item>Kilifi Central 6</item>
+        <item>Kilifi Central 7</item>
+    </string-array>
+
+    <string-array name="malindi_sub_county">
+        <item>Malindi Subcounty 1</item>
+        <item>Malindi Subcounty 2</item>
+        <item>Malindi Subcounty 3</item>
+        <item>Malindi Subcounty 4</item>
+        <item>Malindi Subcounty 5</item>
+        <item>Malindi Subcounty 6</item>
+        <item>Malindi Subcounty 7</item>
+    </string-array>
+
+</resources>
