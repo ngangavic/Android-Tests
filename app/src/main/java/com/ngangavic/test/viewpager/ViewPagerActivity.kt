@@ -1,7 +1,7 @@
 package com.ngangavic.test.viewpager
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
@@ -25,11 +25,8 @@ class ViewPagerActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (mPager.currentItem == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed()
         } else {
-            // Otherwise, select the previous step.
             mPager.currentItem = mPager.currentItem - 1
         }
     }

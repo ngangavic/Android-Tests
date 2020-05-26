@@ -13,8 +13,8 @@ class ImageHolder(itemView: View, private val imageObject: List<Image>) :
 
     var imageView: ImageView
     var textView: TextView
-    var progressBar:ProgressBar
-    var constraint_layout:ConstraintLayout
+    var progressBar: ProgressBar
+    var constraint_layout: ConstraintLayout
 
     init {
         imageView = itemView.findViewById(R.id.imageView) as ImageView

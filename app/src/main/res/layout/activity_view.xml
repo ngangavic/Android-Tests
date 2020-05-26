@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:background="#f2f2f2"
+    android:padding="10dp"
     tools:context=".firebasestorage.ViewActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -29,12 +29,12 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="200dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

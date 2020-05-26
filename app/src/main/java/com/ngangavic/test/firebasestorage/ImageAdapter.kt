@@ -26,7 +26,7 @@ class ImageAdapter(private var context: Context, private val images: ArrayList<I
     }
 
     override fun getItemCount(): Int {
-       return images.size
+        return images.size
     }
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
@@ -41,14 +41,14 @@ class ImageAdapter(private var context: Context, private val images: ArrayList<I
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                         holder.imageView.setImageResource(R.drawable.ic_image)
-                        holder.progressBar.visibility=View.GONE
-                        holder.imageView.visibility=View.VISIBLE
+                        holder.progressBar.visibility = View.GONE
+                        holder.imageView.visibility = View.VISIBLE
                         return false
                     }
 
                     override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        holder.progressBar.visibility=View.GONE
-                        holder.imageView.visibility=View.VISIBLE
+                        holder.progressBar.visibility = View.GONE
+                        holder.imageView.visibility = View.VISIBLE
                         return false
                     }
                 }).into(holder.imageView)

@@ -1,7 +1,7 @@
 package com.ngangavic.test.motionlayout
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.ngangavic.test.R
 
 class MotionLayoutActivity : AppCompatActivity() {

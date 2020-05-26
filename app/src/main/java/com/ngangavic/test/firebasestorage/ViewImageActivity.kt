@@ -29,8 +29,8 @@ class ViewImageActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        window.enterTransition= Slide()
-        window.exitTransition=Explode()
+        window.enterTransition = Slide()
+        window.exitTransition = Explode()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_image)
 
@@ -40,7 +40,7 @@ class ViewImageActivity : AppCompatActivity() {
 
         val url = intent.getStringExtra("image_url")
 
-        Log.d("SENT_URL",url)
+        Log.d("SENT_URL", url)
 
         Glide.with(applicationContext).load(url)
                 .listener(object : RequestListener<Drawable> {

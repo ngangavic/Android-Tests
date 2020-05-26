@@ -2,12 +2,12 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/motionLayout"
     app:layoutDescription="@xml/scene_02"
-    tools:showPaths="true"
-    tools:context=".motionlayout.MotionLayoutActivity">
+    tools:context=".motionlayout.MotionLayoutActivity"
+    tools:showPaths="true">
 
     <View
         android:id="@+id/button"
