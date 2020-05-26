@@ -43,6 +43,7 @@ import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
+import com.ngangavic.test.spinner.SpinnerActivity;
 import com.ngangavic.test.toast.ToastActivity;
 import com.ngangavic.test.usehover.UseHoverActivity;
 import com.ngangavic.test.viewpager.ViewPagerActivity;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonMotionLayout;
     Button buttonUseHover;
     Button buttonPager;
+    Button buttonSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMotionLayout = findViewById(R.id.buttonMotionLayout);
         buttonUseHover = findViewById(R.id.buttonUseHover);
         buttonPager = findViewById(R.id.buttonPager);
+        buttonSpinner = findViewById(R.id.buttonSpinner);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,6 +354,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ViewPagerActivity.class));
+            }
+        });
+
+        buttonSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SpinnerActivity.class));
             }
         });
 
