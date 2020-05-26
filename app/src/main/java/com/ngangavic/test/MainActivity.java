@@ -43,9 +43,9 @@ import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
 import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
-import com.ngangavic.test.spinner.SpinnerActivity;
 import com.ngangavic.test.toast.ToastActivity;
 import com.ngangavic.test.usehover.UseHoverActivity;
+import com.ngangavic.test.viewpager.ViewPagerActivity;
 import com.ngangavic.test.webview.WebViewActivity;
 import com.ngangavic.test.workmanager.SelectActivity;
 import com.ngangavictor.mpesa.stkpush.Settings;
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonFirebaseStorage;
     Button buttonMotionLayout;
     Button buttonUseHover;
-    Button buttonSpinner;
+    Button buttonPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         buttonFirebaseStorage = findViewById(R.id.buttonFirebaseStorage);
         buttonMotionLayout = findViewById(R.id.buttonMotionLayout);
         buttonUseHover = findViewById(R.id.buttonUseHover);
-        buttonSpinner = findViewById(R.id.buttonSpinner);
+        buttonPager = findViewById(R.id.buttonPager);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -347,10 +347,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonSpinner.setOnClickListener(new View.OnClickListener() {
+        buttonPager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SpinnerActivity.class));
+                startActivity(new Intent(MainActivity.this, ViewPagerActivity.class));
             }
         });
 
