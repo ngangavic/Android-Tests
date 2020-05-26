@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".spinner.SpinnerActivity"></activity>
+        <activity android:name=".viewpager.ViewPagerActivity"></activity>
+        <activity android:name=".spinner.SpinnerActivity" />
         <activity android:name=".usehover.UseHoverActivity" />
         <activity android:name=".motionlayout.MotionLayoutActivity" />
         <activity
