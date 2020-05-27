@@ -32,8 +32,8 @@ class ExpandableListViewActivity : AppCompatActivity() {
         mFirebasedatabase = FirebaseDatabase.getInstance();
         mTasksDatabaseReference = mFirebasedatabase.getReference().child("android-test").child("location")
         Log.d("DATA", mTasksDatabaseReference.toString())
-        expandableListWard = HashMap()
-        expandableListSubCounty = ArrayList()
+//        expandableListWard = HashMap()
+//        expandableListSubCounty = ArrayList()
         tasks = ArrayList()
 //        getData()
         prepareListData()
@@ -121,7 +121,6 @@ class ExpandableListViewActivity : AppCompatActivity() {
         expandableListWard[expandableListSubCounty[0]] = kilifiNorth // Header, Child data
         expandableListWard[expandableListSubCounty[1]] = kilifiSouth
         expandableListWard[expandableListSubCounty[2]] = malindi
-
 //        expandableListWard.put("kilifi North",kilifiNorth)
 //        expandableListWard.put("kilifi South",kilifiSouth)
 //        expandableListWard.put("Malindi",malindi)

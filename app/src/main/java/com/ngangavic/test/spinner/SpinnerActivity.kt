@@ -33,7 +33,7 @@ class SpinnerActivity : AppCompatActivity() {
                 val selectedDistrict = position
 
                 // do yourself a favor and intoduce an empty choice for 7;
-                if (parent?.getItemAtPosition(selectedDistrict).toString()!="Select County") {
+                if (parent?.getItemAtPosition(selectedDistrict).toString() != "Select County") {
                     wardSpinner(parent?.getItemAtPosition(selectedDistrict).toString())
                 }
 //                wardSpinner(selectedDistrict)
@@ -57,7 +57,7 @@ class SpinnerActivity : AppCompatActivity() {
 
     fun wardSpinner(subCounty: String) {
         spinnerWard.visibility = View.VISIBLE
-        spinnerCounty.visibility=View.GONE
+        spinnerCounty.visibility = View.GONE
         val resId = getDistrictResourceId(subCounty)
 
         val Cadapter = ArrayAdapter<String>(applicationContext, android.R.layout.simple_spinner_item, getResources().getStringArray(resId))
@@ -76,7 +76,7 @@ class SpinnerActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 //        super.onBackPressed()
-        spinnerCounty.visibility=View.VISIBLE
-        spinnerWard.visibility=View.GONE
+        spinnerCounty.visibility = View.VISIBLE
+        spinnerWard.visibility = View.GONE
     }
 }
