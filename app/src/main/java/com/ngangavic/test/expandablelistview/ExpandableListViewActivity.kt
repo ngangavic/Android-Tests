@@ -2,6 +2,7 @@ package com.ngangavic.test.expandablelistview
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ExpandableListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class ExpandableListViewActivity : AppCompatActivity() {
     lateinit var expandableListSubCounty: MutableList<String>
     private lateinit var expandableListWard: HashMap<String, List<String>>
     lateinit var tasks: List<String>
+    lateinit var buttonDialog:Button
 
     //Firebase storage references
     private lateinit var mFirebasedatabase: FirebaseDatabase
@@ -29,6 +31,7 @@ class ExpandableListViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_expandable_list_view)
 
         expandableListView = findViewById(R.id.expandableListView) as ExpandableListView
+        buttonDialog=findViewById(R.id.buttonDialog)
         mFirebasedatabase = FirebaseDatabase.getInstance();
         mTasksDatabaseReference = mFirebasedatabase.getReference().child("android-test").child("location")
         Log.d("DATA", mTasksDatabaseReference.toString())
@@ -36,6 +39,10 @@ class ExpandableListViewActivity : AppCompatActivity() {
 //        expandableListSubCounty = ArrayList()
         tasks = ArrayList()
 //        getData()
+        buttonDialog.setOnClickListener {
+            val expandableListDialog=ExpandableListDialog().newInstance()
+            expandableListDialog.show(supportFragmentManager,"list")
+        }
         prepareListData()
 
         expandableListAdapter = ExpandableListAdapter(this, expandableListSubCounty, expandableListWard)
