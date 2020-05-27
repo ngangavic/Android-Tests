@@ -8,9 +8,12 @@
 
     <Spinner
         android:id="@+id/spinnerCounty"
+        android:popupBackground="#7CBFA2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:maxHeight="5dp"
+        android:theme="@style/MatchSpinnerTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
