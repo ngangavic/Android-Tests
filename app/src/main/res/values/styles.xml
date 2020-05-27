@@ -24,4 +24,13 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="MatchSpinnerStyle" parent="android:style/Widget.ListView.DropDown">
+        <item name="android:divider">#ffffff</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="MatchSpinnerTheme" parent="AppTheme">
+        <item name="android:dropDownListViewStyle">@style/MatchSpinnerStyle</item>
+    </style>
+
 </resources>

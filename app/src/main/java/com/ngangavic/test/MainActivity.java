@@ -29,6 +29,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.ngangavic.test.bottomnav.BottomNavigationActivity;
 import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
+import com.ngangavic.test.expandablelistview.ExpandableListViewActivity;
 import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.firebasestorage.StorageActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonUseHover;
     Button buttonPager;
     Button buttonSpinner;
+    Button buttonExpandableList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         buttonUseHover = findViewById(R.id.buttonUseHover);
         buttonPager = findViewById(R.id.buttonPager);
         buttonSpinner = findViewById(R.id.buttonSpinner);
+        buttonExpandableList = findViewById(R.id.buttonExpandableList);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -361,6 +364,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SpinnerActivity.class));
+            }
+        });
+
+        buttonExpandableList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ExpandableListViewActivity.class));
             }
         });
 
