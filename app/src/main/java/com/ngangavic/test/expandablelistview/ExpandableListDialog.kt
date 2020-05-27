@@ -23,6 +23,17 @@ class ExpandableListDialog:DialogFragment() {
         expandableListAdapter = ExpandableListAdapter(requireActivity(), expandableListSubCounty, expandableListWard)
 
         expandableListView.setAdapter(expandableListAdapter)
+
+        expandableListView.setOnGroupExpandListener(object : ExpandableListView.OnGroupExpandListener {
+            var prev = -1
+            override fun onGroupExpand(groupPosition: Int) {
+                if (groupPosition != prev) {
+                    expandableListView.collapseGroup(prev)
+                    prev = groupPosition
+                }
+            }
+
+        })
         return root
     }
 

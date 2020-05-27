@@ -17,7 +17,7 @@ class ExpandableListViewActivity : AppCompatActivity() {
     lateinit var expandableListSubCounty: MutableList<String>
     private lateinit var expandableListWard: HashMap<String, List<String>>
     lateinit var tasks: List<String>
-    lateinit var buttonDialog:Button
+    lateinit var buttonDialog: Button
 
     //Firebase storage references
     private lateinit var mFirebasedatabase: FirebaseDatabase
@@ -31,7 +31,7 @@ class ExpandableListViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_expandable_list_view)
 
         expandableListView = findViewById(R.id.expandableListView) as ExpandableListView
-        buttonDialog=findViewById(R.id.buttonDialog)
+        buttonDialog = findViewById(R.id.buttonDialog)
         mFirebasedatabase = FirebaseDatabase.getInstance();
         mTasksDatabaseReference = mFirebasedatabase.getReference().child("android-test").child("location")
         Log.d("DATA", mTasksDatabaseReference.toString())
@@ -40,8 +40,8 @@ class ExpandableListViewActivity : AppCompatActivity() {
         tasks = ArrayList()
 //        getData()
         buttonDialog.setOnClickListener {
-            val expandableListDialog=ExpandableListDialog().newInstance()
-            expandableListDialog.show(supportFragmentManager,"list")
+            val expandableListDialog = ExpandableListDialog().newInstance()
+            expandableListDialog.show(supportFragmentManager, "list")
         }
         prepareListData()
 
@@ -49,21 +49,31 @@ class ExpandableListViewActivity : AppCompatActivity() {
 
         expandableListView.setAdapter(expandableListAdapter)
 //        expandableListAdapter.notifyDataSetChanged()
+        expandableListView.setOnGroupExpandListener(object : ExpandableListView.OnGroupExpandListener {
+            var prev = -1
+            override fun onGroupExpand(groupPosition: Int) {
+                if (groupPosition != prev) {
+                    expandableListView.collapseGroup(prev)
+                    prev = groupPosition
+                }
+            }
 
-        expandableListView!!.setOnGroupExpandListener { groupPosition ->
-            Toast.makeText(
-                    applicationContext,
-                    (expandableListSubCounty as ArrayList<String>)[groupPosition] + " List Expanded.",
-                    Toast.LENGTH_SHORT
-            ).show()
-        }
-        expandableListView!!.setOnGroupCollapseListener { groupPosition ->
-            Toast.makeText(
-                    applicationContext,
-                    (expandableListSubCounty as ArrayList<String>)[groupPosition] + " List Collapsed.",
-                    Toast.LENGTH_SHORT
-            ).show()
-        }
+        })
+//        expandableListView!!.setOnGroupExpandListener { groupPosition ->
+//
+//            Toast.makeText(
+//                    applicationContext,
+//                    (expandableListSubCounty as ArrayList<String>)[groupPosition] + " List Expanded.",
+//                    Toast.LENGTH_SHORT
+//            ).show()
+//        }
+//        expandableListView!!.setOnGroupCollapseListener { groupPosition ->
+//            Toast.makeText(
+//                    applicationContext,
+//                    (expandableListSubCounty as ArrayList<String>)[groupPosition] + " List Collapsed.",
+//                    Toast.LENGTH_SHORT
+//            ).show()
+//        }
         expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
             Toast.makeText(
                     applicationContext,
