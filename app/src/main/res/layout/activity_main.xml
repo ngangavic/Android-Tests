@@ -289,6 +289,15 @@
                 android:layout_gravity="center"
                 android:text="Expandable List" />
 
+            <Button
+                android:id="@+id/buttonMultipleImages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="14"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Multiple Images" />
+
         </GridLayout>
     </androidx.core.widget.NestedScrollView>
 

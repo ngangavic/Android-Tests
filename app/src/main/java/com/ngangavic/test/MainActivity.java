@@ -39,6 +39,7 @@ import com.ngangavic.test.googleadmob.GoogleAdMobActivity;
 import com.ngangavic.test.jobscheduler.JobSchedulerActivity;
 import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.motionlayout.MotionLayoutActivity;
+import com.ngangavic.test.multipleimages.MultipleImagesActivity;
 import com.ngangavic.test.notifications.NotificationActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonPager;
     Button buttonSpinner;
     Button buttonExpandableList;
+    Button buttonMultipleImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPager = findViewById(R.id.buttonPager);
         buttonSpinner = findViewById(R.id.buttonSpinner);
         buttonExpandableList = findViewById(R.id.buttonExpandableList);
+        buttonMultipleImages = findViewById(R.id.buttonMultipleImages);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -371,6 +374,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ExpandableListViewActivity.class));
+            }
+        });
+
+        buttonMultipleImages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MultipleImagesActivity.class));
             }
         });
 
