@@ -83,6 +83,7 @@ class StorageActivity : AppCompatActivity() {
 
     private fun chooseImage() {
         val intent = Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 200)
     }
 
