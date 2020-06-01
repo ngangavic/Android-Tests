@@ -46,7 +46,11 @@ class MultipleImagesActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Removed item at : $position",Toast.LENGTH_LONG).show()
         }
 
-        buttonAlert.setOnClickListener {  }
+        buttonAlert.setOnClickListener {
+            val multipleImagesDialog=MultipleImagesDialog(filePaths).newInstance()
+            multipleImagesDialog.isCancelable=false
+            multipleImagesDialog.show(supportFragmentManager,"dialog grid view")
+        }
 
     }
 
