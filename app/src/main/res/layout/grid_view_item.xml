@@ -6,7 +6,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_width="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         app:srcCompat="@mipmap/ic_launcher" />
 </LinearLayout>
