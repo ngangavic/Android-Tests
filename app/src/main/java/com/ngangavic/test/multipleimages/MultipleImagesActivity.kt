@@ -4,9 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.GridView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ngangavic.test.R
 import droidninja.filepicker.FilePickerBuilder
@@ -38,6 +41,12 @@ class MultipleImagesActivity : AppCompatActivity() {
                     .setActivityTheme(R.style.LibAppTheme) //optional
                     .pickPhoto(this)
         }
+
+        gridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            galleryAdapter.removeItem(position)
+            Toast.makeText(applicationContext, "Removed item at : $position",Toast.LENGTH_LONG).show()
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

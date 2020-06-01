@@ -30,4 +30,10 @@ class GalleryAdapter(val context: Context, private val uriArray: ArrayList<Uri>)
     override fun getCount(): Int {
         return uriArray.size
     }
+
+    fun removeItem(position: Int){
+        uriArray.removeAt(position)
+        notifyDataSetChanged()
+    }
+
 }
