@@ -20,17 +20,16 @@ class MultipleImagesActivity : AppCompatActivity() {
 
     private lateinit var buttonSelect: Button
     private lateinit var gridView: GridView
-    val PICK_MULTIPLE_IMAGE = 1
     lateinit var filePaths: ArrayList<Uri>
-    lateinit var encodedImage: String
-    lateinit var encodedImagesList: List<String>
     lateinit var galleryAdapter: GalleryAdapter
+    lateinit var buttonAlert:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_multiple_images)
 
         buttonSelect = findViewById(R.id.buttonSelect)
+        buttonAlert = findViewById(R.id.buttonAlert)
         gridView = findViewById(R.id.gridView)
         filePaths = ArrayList()
         buttonSelect.setOnClickListener {
@@ -46,6 +45,8 @@ class MultipleImagesActivity : AppCompatActivity() {
             galleryAdapter.removeItem(position)
             Toast.makeText(applicationContext, "Removed item at : $position",Toast.LENGTH_LONG).show()
         }
+
+        buttonAlert.setOnClickListener {  }
 
     }
 
