@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Button
@@ -22,7 +21,7 @@ class MultipleImagesActivity : AppCompatActivity() {
     private lateinit var gridView: GridView
     lateinit var filePaths: ArrayList<Uri>
     lateinit var galleryAdapter: GalleryAdapter
-    lateinit var buttonAlert:Button
+    lateinit var buttonAlert: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +42,13 @@ class MultipleImagesActivity : AppCompatActivity() {
 
         gridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             galleryAdapter.removeItem(position)
-            Toast.makeText(applicationContext, "Removed item at : $position",Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Removed item at : $position", Toast.LENGTH_LONG).show()
         }
 
         buttonAlert.setOnClickListener {
-            val multipleImagesDialog=MultipleImagesDialog(filePaths).newInstance()
-            multipleImagesDialog.isCancelable=false
-            multipleImagesDialog.show(supportFragmentManager,"dialog grid view")
+            val multipleImagesDialog = MultipleImagesDialog(filePaths).newInstance()
+            multipleImagesDialog.isCancelable = false
+            multipleImagesDialog.show(supportFragmentManager, "dialog grid view")
         }
 
     }

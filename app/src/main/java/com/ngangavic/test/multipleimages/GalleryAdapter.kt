@@ -31,7 +31,7 @@ class GalleryAdapter(val context: Context, private val uriArray: ArrayList<Uri>)
         return uriArray.size
     }
 
-    fun removeItem(position: Int){
+    fun removeItem(position: Int) {
         uriArray.removeAt(position)
         notifyDataSetChanged()
     }

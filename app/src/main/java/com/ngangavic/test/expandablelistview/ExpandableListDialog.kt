@@ -8,16 +8,16 @@ import android.widget.ExpandableListView
 import androidx.fragment.app.DialogFragment
 import com.ngangavic.test.R
 
-class ExpandableListDialog:DialogFragment() {
+class ExpandableListDialog : DialogFragment() {
 
     lateinit var expandableListView: ExpandableListView
     lateinit var expandableListAdapter: ExpandableListAdapter
     lateinit var expandableListSubCounty: MutableList<String>
     private lateinit var expandableListWard: HashMap<String, List<String>>
-    lateinit var root:View
+    lateinit var root: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        root= inflater.inflate(R.layout.dialog_expandable_list, container)
+        root = inflater.inflate(R.layout.dialog_expandable_list, container)
         expandableListView = root.findViewById(R.id.expandableListView) as ExpandableListView
         prepareListData()
         expandableListAdapter = ExpandableListAdapter(requireActivity(), expandableListSubCounty, expandableListWard)
