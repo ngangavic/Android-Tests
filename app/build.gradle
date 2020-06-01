@@ -104,4 +104,6 @@ dependencies {
 
     //use hover
     implementation 'com.hover:android-sdk:1.5.2'
+
+    implementation 'com.droidninja:filepicker:2.2.4'
 }
