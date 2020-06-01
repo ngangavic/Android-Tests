@@ -18,6 +18,7 @@ import droidninja.filepicker.FilePickerConst
 class MultipleImagesActivity : AppCompatActivity() {
 
     private lateinit var buttonSelect: Button
+    private lateinit var buttonUpload: Button
     private lateinit var gridView: GridView
     lateinit var filePaths: ArrayList<Uri>
     lateinit var galleryAdapter: GalleryAdapter
@@ -28,6 +29,7 @@ class MultipleImagesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_multiple_images)
 
         buttonSelect = findViewById(R.id.buttonSelect)
+        buttonUpload = findViewById(R.id.buttonUpload)
         buttonAlert = findViewById(R.id.buttonAlert)
         gridView = findViewById(R.id.gridView)
         filePaths = ArrayList()
@@ -50,6 +52,8 @@ class MultipleImagesActivity : AppCompatActivity() {
             multipleImagesDialog.isCancelable = false
             multipleImagesDialog.show(supportFragmentManager, "dialog grid view")
         }
+
+        buttonUpload.setOnClickListener {  }
 
     }
 
