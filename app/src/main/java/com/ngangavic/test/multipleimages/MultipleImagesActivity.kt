@@ -78,11 +78,12 @@ class MultipleImagesActivity : AppCompatActivity() {
 
     }
 
-    private fun uploadToFirebase(filePaths: ArrayList<Uri>){
-        Toast.makeText(applicationContext,filePaths.size.toString(),Toast.LENGTH_SHORT).show()
-        var img=0
+    private fun uploadToFirebase(filePaths: ArrayList<Uri>) {
+        Toast.makeText(applicationContext, filePaths.size.toString(), Toast.LENGTH_SHORT).show()
+        var img = 0
         for (i in filePaths) {
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, i)
+//            bitmap=Bitmap.createScaledBitmap(bitmap, 720, 405, false);
             val byteArrayOutputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
             val data = byteArrayOutputStream.toByteArray()
@@ -102,8 +103,8 @@ class MultipleImagesActivity : AppCompatActivity() {
                     if (p0.isSuccessful()) {
                         val downloadUri = p0.getResult()
                         Log.d("DOWNLOAD URi", downloadUri.toString())
-                        val url=downloadUri.toString()
-                        Log.d("URL"+img++,downloadUri.toString())
+                        val url = downloadUri.toString()
+                        Log.d("URL" + img++, downloadUri.toString())
 //                        database.child("android-test").child(editTextName.text.toString().replace(" ", "")).child("url").setValue(downloadUri.toString())
                         Toast.makeText(applicationContext, "Success!", Toast.LENGTH_LONG).show()
                     } else {
