@@ -36,6 +36,7 @@ import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
 import com.ngangavic.test.googleadmob.GoogleAdMobActivity;
+import com.ngangavic.test.imagescrollview.ImageScrollViewActivity;
 import com.ngangavic.test.jobscheduler.JobSchedulerActivity;
 import com.ngangavic.test.maps.MapsActivity;
 import com.ngangavic.test.motionlayout.MotionLayoutActivity;
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonSpinner;
     Button buttonExpandableList;
     Button buttonMultipleImages;
+    Button buttonImageScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSpinner = findViewById(R.id.buttonSpinner);
         buttonExpandableList = findViewById(R.id.buttonExpandableList);
         buttonMultipleImages = findViewById(R.id.buttonMultipleImages);
+        buttonImageScrollView = findViewById(R.id.buttonImageScrollView);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,6 +384,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MultipleImagesActivity.class));
+            }
+        });
+        buttonImageScrollView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ImageScrollViewActivity.class));
             }
         });
 

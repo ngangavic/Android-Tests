@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".multipleimages.MultipleImagesActivity"></activity>
+        <activity android:name=".imagescrollview.ImageScrollViewActivity"></activity>
+        <activity android:name=".multipleimages.MultipleImagesActivity" />
         <activity android:name=".expandablelistview.ExpandableListViewActivity" />
         <activity android:name=".spinner.SpinnerActivity" />
         <activity android:name=".viewpager.ViewPagerActivity" />
