@@ -52,6 +52,7 @@ class ChatActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            chooseRecipient()
                             editTextMessage.isEnabled = true
                             imageButtonSend.isEnabled = true
                             dialog.cancel()
@@ -84,6 +85,7 @@ class ChatActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            chooseRecipient()
                             editTextMessage.isEnabled = true
                             imageButtonSend.isEnabled = true
                             dialog.cancel()
@@ -130,4 +132,18 @@ class ChatActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun chooseRecipient() {
+        val alert = AlertDialog.Builder(this)
+        alert.setCancelable(false)
+        alert.setTitle("Choose Recipient")
+        val recyclerView = RecyclerView(this)
+        alert.setView(recyclerView)
+        val dialog = alert.create()
+        recyclerView.setOnClickListener {
+            dialog.cancel()
+        }
+        dialog.show()
+    }
+
 }
