@@ -307,6 +307,15 @@
                 android:layout_gravity="center"
                 android:text="Image Scroll View" />
 
+            <Button
+                android:id="@+id/buttonImageChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="15"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Chat" />
+
         </GridLayout>
     </androidx.core.widget.NestedScrollView>
 

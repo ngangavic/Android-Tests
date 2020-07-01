@@ -27,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 import com.ngangavic.test.bottomnav.BottomNavigationActivity;
+import com.ngangavic.test.chat.ChatActivity;
 import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
 import com.ngangavic.test.expandablelistview.ExpandableListViewActivity;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonExpandableList;
     Button buttonMultipleImages;
     Button buttonImageScrollView;
+    Button buttonImageChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         buttonExpandableList = findViewById(R.id.buttonExpandableList);
         buttonMultipleImages = findViewById(R.id.buttonMultipleImages);
         buttonImageScrollView = findViewById(R.id.buttonImageScrollView);
+        buttonImageChat = findViewById(R.id.buttonImageChat);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,6 +393,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ImageScrollViewActivity.class));
+            }
+        });
+        buttonImageChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ChatActivity.class));
             }
         });
 
