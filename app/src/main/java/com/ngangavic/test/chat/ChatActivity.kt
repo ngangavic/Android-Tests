@@ -31,6 +31,7 @@ class ChatActivity : AppCompatActivity() {
         recyclerviewMessages = findViewById(R.id.recyclerviewMessages)
 
         auth = FirebaseAuth.getInstance()
+
     }
 
     private fun authRegisterAlert() {
@@ -48,6 +49,8 @@ class ChatActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            editTextMessage.isEnabled=true
+                            imageButtonSend.isEnabled=true
                             dialog.cancel()
                             Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
                         } else {
@@ -78,6 +81,8 @@ class ChatActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            editTextMessage.isEnabled=true
+                            imageButtonSend.isEnabled=true
                             dialog.cancel()
                             Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
                         } else {
@@ -100,6 +105,8 @@ class ChatActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         Log.e("CHAT USER", currentUser.toString())
         if (currentUser == null) {
+            editTextMessage.isEnabled=false
+            imageButtonSend.isEnabled=false
             authLoginAlert()
         }
     }
