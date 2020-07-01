@@ -99,6 +99,10 @@
             android:name=".service.MyService"
             android:enabled="true" />
 
+        <service
+            android:name=".multipleimages.utils.UploadPhotoService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <meta-data
             android:name="com.hover.ApiKey"
             android:value="6d35291945a13bb8ad1fe343ecc6c2f7" />
