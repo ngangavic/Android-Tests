@@ -3,6 +3,9 @@ package com.ngangavic.test.chat
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
@@ -49,8 +52,8 @@ class ChatActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            editTextMessage.isEnabled=true
-                            imageButtonSend.isEnabled=true
+                            editTextMessage.isEnabled = true
+                            imageButtonSend.isEnabled = true
                             dialog.cancel()
                             Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
                         } else {
@@ -81,8 +84,8 @@ class ChatActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            editTextMessage.isEnabled=true
-                            imageButtonSend.isEnabled=true
+                            editTextMessage.isEnabled = true
+                            imageButtonSend.isEnabled = true
                             dialog.cancel()
                             Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
                         } else {
@@ -101,13 +104,30 @@ class ChatActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        auth.signOut()
         val currentUser = auth.currentUser
         Log.e("CHAT USER", currentUser.toString())
         if (currentUser == null) {
-            editTextMessage.isEnabled=false
-            imageButtonSend.isEnabled=false
+            editTextMessage.isEnabled = false
+            imageButtonSend.isEnabled = false
             authLoginAlert()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.chat_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_logout -> {
+                auth.signOut()
+                recyclerviewMessages.visibility = View.GONE
+                editTextMessage.isEnabled = false
+                imageButtonSend.isEnabled = false
+                Toast.makeText(baseContext, "You signed out", Toast.LENGTH_LONG).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
