@@ -205,10 +205,11 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
 
             override fun onDataChange(p0: DataSnapshot) {
                 recipientList.clear()
-//                Log.d("CHAT USERS",p0.key)
                 for (postSnapshot in p0.children) {
-                    val recipient = Recipient(postSnapshot.child("username").value.toString(), postSnapshot.key.toString())
-                    recipientList.add(recipient)
+                    if (postSnapshot.key != auth.currentUser?.uid) {
+                        val recipient = Recipient(postSnapshot.child("username").value.toString(), postSnapshot.key.toString())
+                        recipientList.add(recipient)
+                    }
                 }
                 adapter = RecipientAdapter(
                         recipientList as ArrayList<Recipient>, this@ChatActivity
