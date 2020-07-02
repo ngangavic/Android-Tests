@@ -34,7 +34,7 @@ class MessagesAdapter(private val messages: ArrayList<Message>) :
 
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
         holder.textViewMessage.text=messages[position].message
-        holder.textViewName.text=messages[position].person
+//        holder.textViewName.text=messages[position].person
         holder.textViewTime.text=messages[position].time
     }
 
