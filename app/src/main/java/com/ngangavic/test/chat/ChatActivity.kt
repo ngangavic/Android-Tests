@@ -64,8 +64,8 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
 
     }
 
-    private fun fetchMessages() {
-        val fetchMessageQuery = database.child("my-chat")
+    private fun getMessages(channel: String) {
+        val fetchMessageQuery = database.child("my-chat").child(channel)
         fetchMessageQuery.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.e("CHAT ERROR", p0.message)
@@ -73,18 +73,35 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
 
             override fun onDataChange(p0: DataSnapshot) {
                 messagesList.clear()
+
                 for (postSnapshot in p0.children) {
                     Log.e("CHAT DATA", postSnapshot.toString())
-                    if (postSnapshot.child("receiverId").value!! == receiverId && postSnapshot.child("senderId").value!! == auth.currentUser!!.uid) {
-                        Log.e("CHAT DATA FILTERED", postSnapshot.toString())
-                        val message = Message(postSnapshot.child("senderId").value.toString(), postSnapshot.child("time").value.toString(), "", postSnapshot.child("message").value.toString())
-                        messagesList.add(message)
-                    }
+                    Log.e("CHAT DATA FILTERED", postSnapshot.toString())
+                    val message = Message(postSnapshot.child("senderId").value.toString(), postSnapshot.child("time").value.toString(), "", postSnapshot.child("message").value.toString())
+                    messagesList.add(message)
                 }
                 messagesAdapter = MessagesAdapter(messagesList as ArrayList<Message>)
                 messagesAdapter.notifyDataSetChanged()
                 recyclerviewMessages.adapter = messagesAdapter
                 recyclerviewMessages.visibility = View.VISIBLE
+            }
+
+        })
+    }
+
+    private fun fetchMessages() {
+        val fetchChannelQuery = database.child("my-chat")
+        fetchChannelQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.child(auth.currentUser!!.uid + "_" + receiverId).exists()) {
+                    getMessages(auth.currentUser!!.uid + "_" + receiverId)
+                } else if (p0.child(receiverId + "_" + auth.currentUser!!.uid).exists()) {
+                    getMessages(receiverId + "_" + auth.currentUser!!.uid)
+                }
             }
 
         })
@@ -103,7 +120,8 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
             } else {
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 val calendar = Calendar.getInstance().time
-                database.child("my-chat").push()
+
+                database.child("my-chat").child(generateChannel(auth.currentUser!!.uid, receiverId.toString())).push()
                         .setValue(MessageStructure(auth.currentUser!!.uid, receiverId.toString(), message, dateFormat.format(calendar)))
                         .addOnSuccessListener {
                             Toast.makeText(this, "Message sent", Toast.LENGTH_SHORT).show()
@@ -192,6 +210,14 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
             authRegisterAlert()
         }
         dialog.show()
+    }
+
+    private fun generateChannel(sender: String, receiver: String): String {
+        return if (sender > receiver) {
+            sender + "_" + receiver
+        } else {
+            receiver + "_" + sender
+        }
     }
 
     public override fun onStart() {
