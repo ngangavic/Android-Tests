@@ -2,6 +2,7 @@ package com.ngangavic.test.chat
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -22,8 +23,11 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.ngangavic.test.R
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
-class ChatActivity : AppCompatActivity(),SelectedRecipient {
+class ChatActivity : AppCompatActivity(), SelectedRecipient {
 
     private lateinit var textViewTitle: TextView
     private lateinit var editTextMessage: EditText
@@ -31,7 +35,7 @@ class ChatActivity : AppCompatActivity(),SelectedRecipient {
     private lateinit var recyclerviewMessages: RecyclerView
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
-    private lateinit var dialog:AlertDialog
+    private lateinit var dialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +45,40 @@ class ChatActivity : AppCompatActivity(),SelectedRecipient {
         editTextMessage = findViewById(R.id.editTextMessage)
         imageButtonSend = findViewById(R.id.imageButtonSend)
         recyclerviewMessages = findViewById(R.id.recyclerviewMessages)
-        textViewTitle.text="Choose Recipient"
+        textViewTitle.text = "Choose Recipient"
         textViewTitle.setOnClickListener { chooseRecipient() }
 
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
 
+        imageButtonSend.setOnClickListener { sendMessage() }
+
+    }
+
+    private fun sendMessage() {
+        if (auth.currentUser == null) {
+            authLoginAlert()
+        } else if (receiverId == null) {
+            chooseRecipient()
+        } else {
+            val message = editTextMessage.text.toString()
+            if (TextUtils.isEmpty(message)) {
+                editTextMessage.requestFocus()
+                editTextMessage.error = "Cannot be empty"
+            } else {
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                val calendar = Calendar.getInstance().time
+                database.child("my-chat").push()
+                        .setValue(MessageStructure(auth.currentUser!!.uid, receiverId.toString(), message, dateFormat.format(calendar)))
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Message sent", Toast.LENGTH_SHORT).show()
+                            editTextMessage.text.clear()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Message not sent", Toast.LENGTH_SHORT).show()
+                        }
+            }
+        }
     }
 
     private fun authRegisterAlert() {
@@ -148,7 +180,7 @@ class ChatActivity : AppCompatActivity(),SelectedRecipient {
                 imageButtonSend.isEnabled = false
                 Toast.makeText(baseContext, "You signed out", Toast.LENGTH_LONG).show()
             }
-            R.id.action_change_recipient->{
+            R.id.action_change_recipient -> {
                 chooseRecipient()
             }
         }
@@ -156,7 +188,7 @@ class ChatActivity : AppCompatActivity(),SelectedRecipient {
     }
 
     private fun chooseRecipient() {
-        val getUsersQuery=database.child("chat-users")
+        val getUsersQuery = database.child("chat-users")
         val recipientList: MutableList<Recipient> = ArrayList()
         var adapter: RecipientAdapter? = null
         val alert = AlertDialog.Builder(this)
@@ -179,7 +211,7 @@ class ChatActivity : AppCompatActivity(),SelectedRecipient {
                     recipientList.add(recipient)
                 }
                 adapter = RecipientAdapter(
-                        recipientList as ArrayList<Recipient>,this@ChatActivity
+                        recipientList as ArrayList<Recipient>, this@ChatActivity
                 )
                 adapter?.notifyDataSetChanged()
                 recyclerView.adapter = adapter
@@ -194,16 +226,16 @@ class ChatActivity : AppCompatActivity(),SelectedRecipient {
     }
 
     override fun setUsername(username: String) {
-        textViewTitle.text="You are chatting with "+username
+        textViewTitle.text = "You are chatting with " + username
         dialog.cancel()
     }
 
     override fun setRecipientId(recipientId: String) {
-        receiverId=recipientId
+        receiverId = recipientId
     }
 
-    companion object{
-        lateinit var receiverId:String
+    companion object {
+        var receiverId: String? = null
     }
 
 }
