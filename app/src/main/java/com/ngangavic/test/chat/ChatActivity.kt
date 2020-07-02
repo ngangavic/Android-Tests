@@ -1,6 +1,7 @@
 package com.ngangavic.test.chat
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -168,6 +169,12 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.chat_menu, menu)
+        if (auth.currentUser != null) {
+            menu?.findItem(R.id.action_login)?.isVisible = false
+        } else {
+            menu?.findItem(R.id.action_logout)?.isVisible = false
+            menu?.findItem(R.id.action_change_recipient)?.isVisible = false
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -179,9 +186,14 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
                 editTextMessage.isEnabled = false
                 imageButtonSend.isEnabled = false
                 Toast.makeText(baseContext, "You signed out", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this,ChatActivity::class.java))
+                finish()
             }
             R.id.action_change_recipient -> {
                 chooseRecipient()
+            }
+            R.id.action_login -> {
+                authLoginAlert()
             }
         }
         return super.onOptionsItemSelected(item)
