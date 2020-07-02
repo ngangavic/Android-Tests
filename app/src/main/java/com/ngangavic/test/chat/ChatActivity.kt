@@ -12,14 +12,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.ngangavic.test.R
 
-class ChatActivity : AppCompatActivity() {
+class ChatActivity : AppCompatActivity(),SelectedRecipient {
 
     private lateinit var textViewTitle: TextView
     private lateinit var editTextMessage: EditText
@@ -27,6 +31,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var recyclerviewMessages: RecyclerView
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private lateinit var dialog:AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,16 +156,54 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun chooseRecipient() {
+        val getUsersQuery=database.child("chat-users")
+        val recipientList: MutableList<Recipient> = ArrayList()
+        var adapter: RecipientAdapter? = null
         val alert = AlertDialog.Builder(this)
         alert.setCancelable(false)
         alert.setTitle("Choose Recipient")
         val recyclerView = RecyclerView(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        getUsersQuery.addValueEventListener(object : ValueEventListener {
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                recipientList.clear()
+//                Log.d("CHAT USERS",p0.key)
+                for (postSnapshot in p0.children) {
+                    val recipient = Recipient(postSnapshot.child("username").value.toString(), postSnapshot.key.toString())
+                    recipientList.add(recipient)
+                }
+                adapter = RecipientAdapter(
+                        recipientList as ArrayList<Recipient>,this@ChatActivity
+                )
+                adapter?.notifyDataSetChanged()
+                recyclerView.adapter = adapter
+            }
+        })
         alert.setView(recyclerView)
-        val dialog = alert.create()
+        dialog = alert.create()
         recyclerView.setOnClickListener {
             dialog.cancel()
         }
         dialog.show()
+    }
+
+    override fun setUsername(username: String) {
+        textViewTitle.text="You are chatting with "+username
+        dialog.cancel()
+    }
+
+    override fun setRecipientId(recipientId: String) {
+        receiverId=recipientId
+    }
+
+    companion object{
+        lateinit var receiverId:String
     }
 
 }
