@@ -1,5 +1,6 @@
 package com.ngangavic.test.chat
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -37,7 +38,10 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var dialog: AlertDialog
+    lateinit var messagesList: MutableList<Message>
+    lateinit var messagesAdapter: MessagesAdapter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -49,11 +53,41 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
         textViewTitle.text = "Choose Recipient"
         textViewTitle.setOnClickListener { chooseRecipient() }
 
+        recyclerviewMessages.layoutManager = LinearLayoutManager(this)
+        recyclerviewMessages.setHasFixedSize(true)
+
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
+        messagesList = ArrayList()
 
         imageButtonSend.setOnClickListener { sendMessage() }
 
+    }
+
+    private fun fetchMessages() {
+        val fetchMessageQuery = database.child("my-chat")
+        fetchMessageQuery.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e("CHAT ERROR", p0.message)
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                messagesList.clear()
+                for (postSnapshot in p0.children) {
+                    Log.e("CHAT DATA", postSnapshot.toString())
+                    if (postSnapshot.child("receiverId").value!! == receiverId && postSnapshot.child("senderId").value!! == auth.currentUser!!.uid) {
+                        Log.e("CHAT DATA FILTERED", postSnapshot.toString())
+                        val message = Message(postSnapshot.child("senderId").value.toString(), postSnapshot.child("time").value.toString(), "", postSnapshot.child("message").value.toString())
+                        messagesList.add(message)
+                    }
+                }
+                messagesAdapter = MessagesAdapter(messagesList as ArrayList<Message>)
+                messagesAdapter.notifyDataSetChanged()
+                recyclerviewMessages.adapter = messagesAdapter
+                recyclerviewMessages.visibility = View.VISIBLE
+            }
+
+        })
     }
 
     private fun sendMessage() {
@@ -245,6 +279,7 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
     override fun setUsername(username: String) {
         textViewTitle.text = "You are chatting with " + username
         dialog.cancel()
+        fetchMessages()
     }
 
     override fun setRecipientId(recipientId: String) {

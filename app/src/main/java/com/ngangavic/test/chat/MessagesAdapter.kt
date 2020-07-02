@@ -4,12 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.ngangavic.test.R
 
-class MessagesAdapter(private var context: Context, private val messages: ArrayList<Message>) :
+class MessagesAdapter(private val messages: ArrayList<Message>) :
         RecyclerView.Adapter<MessageHolder>() {
 
     private val me = 100
+    private var auth: FirebaseAuth=FirebaseAuth.getInstance()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
         val viewHolder: MessageHolder
@@ -37,7 +39,7 @@ class MessagesAdapter(private var context: Context, private val messages: ArrayL
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (messages[position].uid == "") {
+        if (messages[position].uid == auth.currentUser!!.uid) {
             return me
         }
         return position
