@@ -14,6 +14,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.ngangavic.test.R
 
 class ChatActivity : AppCompatActivity() {
@@ -23,6 +26,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var imageButtonSend: ImageButton
     private lateinit var recyclerviewMessages: RecyclerView
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,7 @@ class ChatActivity : AppCompatActivity() {
         textViewTitle.setOnClickListener { chooseRecipient() }
 
         auth = FirebaseAuth.getInstance()
+        database = Firebase.database.reference
 
     }
 
@@ -45,6 +50,7 @@ class ChatActivity : AppCompatActivity() {
         val customLayout = getLayoutInflater().inflate(R.layout.dialog_chat_register, null)
         alert.setView(customLayout)
 
+        val name = customLayout.findViewById<EditText>(R.id.registerName)
         val email = customLayout.findViewById<EditText>(R.id.registerEmail)
         val password = customLayout.findViewById<EditText>(R.id.registerPassword)
 
@@ -54,11 +60,17 @@ class ChatActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            chooseRecipient()
-                            editTextMessage.isEnabled = true
-                            imageButtonSend.isEnabled = true
-                            dialog.cancel()
-                            Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
+                            database.child("chat-users").child(auth.currentUser!!.uid).child("username").setValue(name.text.toString())
+                                    .addOnSuccessListener {
+                                        editTextMessage.isEnabled = true
+                                        imageButtonSend.isEnabled = true
+                                        dialog.cancel()
+                                        chooseRecipient()
+                                        Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(baseContext, "Error.", Toast.LENGTH_SHORT).show()
+                                    }
                         } else {
                             Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                         }
