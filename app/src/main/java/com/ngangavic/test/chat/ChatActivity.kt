@@ -32,6 +32,8 @@ class ChatActivity : AppCompatActivity() {
         editTextMessage = findViewById(R.id.editTextMessage)
         imageButtonSend = findViewById(R.id.imageButtonSend)
         recyclerviewMessages = findViewById(R.id.recyclerviewMessages)
+        textViewTitle.text="Choose Recipient"
+        textViewTitle.setOnClickListener { chooseRecipient() }
 
         auth = FirebaseAuth.getInstance()
 
@@ -128,6 +130,9 @@ class ChatActivity : AppCompatActivity() {
                 editTextMessage.isEnabled = false
                 imageButtonSend.isEnabled = false
                 Toast.makeText(baseContext, "You signed out", Toast.LENGTH_LONG).show()
+            }
+            R.id.action_change_recipient->{
+                chooseRecipient()
             }
         }
         return super.onOptionsItemSelected(item)
