@@ -105,6 +105,8 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
                                         dialog.cancel()
                                         chooseRecipient()
                                         Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
+                                        startActivity(Intent(this, ChatActivity::class.java))
+                                        finish()
                                     }
                                     .addOnFailureListener {
                                         Toast.makeText(baseContext, "Error.", Toast.LENGTH_SHORT).show()
@@ -142,6 +144,8 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
                             imageButtonSend.isEnabled = true
                             dialog.cancel()
                             Toast.makeText(baseContext, "Authentication success", Toast.LENGTH_LONG).show()
+                            startActivity(Intent(this, ChatActivity::class.java))
+                            finish()
                         } else {
                             Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                         }
@@ -186,7 +190,7 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
                 editTextMessage.isEnabled = false
                 imageButtonSend.isEnabled = false
                 Toast.makeText(baseContext, "You signed out", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this,ChatActivity::class.java))
+                startActivity(Intent(this, ChatActivity::class.java))
                 finish()
             }
             R.id.action_change_recipient -> {
