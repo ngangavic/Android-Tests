@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".chat.ChatActivity"></activity>
+        <activity android:name=".search.SearchActivity"></activity>
+        <activity android:name=".chat.ChatActivity" />
         <activity android:name=".imagescrollview.ImageScrollViewActivity" />
         <activity android:name=".multipleimages.MultipleImagesActivity" />
         <activity android:name=".expandablelistview.ExpandableListViewActivity" />

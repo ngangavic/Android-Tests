@@ -45,6 +45,7 @@ import com.ngangavic.test.multipleimages.MultipleImagesActivity;
 import com.ngangavic.test.notifications.NotificationActivity;
 import com.ngangavic.test.recorder.RecorderActivity;
 import com.ngangavic.test.rv.RVActivity;
+import com.ngangavic.test.search.SearchActivity;
 import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.spinner.SpinnerActivity;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonMultipleImages;
     Button buttonImageScrollView;
     Button buttonImageChat;
+    Button buttonSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMultipleImages = findViewById(R.id.buttonMultipleImages);
         buttonImageScrollView = findViewById(R.id.buttonImageScrollView);
         buttonImageChat = findViewById(R.id.buttonImageChat);
+        buttonSearch = findViewById(R.id.buttonSearch);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -399,6 +402,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ChatActivity.class));
+            }
+        });
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
             }
         });
 

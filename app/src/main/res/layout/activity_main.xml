@@ -316,6 +316,16 @@
                 android:layout_gravity="center"
                 android:text="Chat" />
 
+            <Button
+                android:id="@+id/buttonSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="16"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:text="Search Activity" />
+
+
         </GridLayout>
     </androidx.core.widget.NestedScrollView>
 
