@@ -4,11 +4,16 @@ import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
+import android.view.ViewGroup.LayoutParams
+import android.widget.PopupWindow
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -28,12 +33,14 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var recyclerViewAdapter: SearchAdapter
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
-
+    private lateinit var root: ConstraintLayout
+    private lateinit var popupWindow: PopupWindow
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
         recyclerviewSearch = findViewById(R.id.recyclerviewSearch)
+        root = findViewById(R.id.root)
         recyclerviewSearch.layoutManager = LinearLayoutManager(applicationContext)
         searchList = ArrayList()
 
@@ -72,6 +79,46 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
+    private fun popup(char: String) {
+        val inflater = applicationContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.search_popup, null, false)
+        val recyclerViewPopup = view.findViewById<RecyclerView>(R.id.recyclerviewSearchPopup)
+        recyclerViewPopup.layoutManager = LinearLayoutManager(applicationContext)
+        val fetchMessageQuery = database.child("search")
+        fetchMessageQuery.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e("CHAT ERROR", p0.message)
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                searchList.clear()
+
+                for (postSnapshot in p0.children) {
+                    Log.e("DATA", postSnapshot.value.toString())
+                    val key = postSnapshot.key.toString()
+                    Log.e("KEY", key)
+                    if (postSnapshot.value.toString().contains(char)) {
+                        Log.e("VALUE", postSnapshot.value.toString())
+                        searchList.add(Search(postSnapshot.value.toString()))
+                    }
+                }
+                recyclerViewAdapter = SearchAdapter(this@SearchActivity, searchList as ArrayList<Search>)
+                recyclerViewAdapter.notifyDataSetChanged()
+                recyclerViewPopup.adapter = recyclerViewAdapter
+                recyclerViewPopup.visibility = View.VISIBLE
+            }
+
+        })
+        popupWindow = PopupWindow(view, 400, LayoutParams.WRAP_CONTENT)
+        popupWindow.isOutsideTouchable = true
+
+        if (popupWindow.isShowing) {
+            popupWindow.dismiss()
+        } else {
+            popupWindow.showAtLocation(root, Gravity.TOP, 0, 150)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
 
@@ -85,8 +132,9 @@ class SearchActivity : AppCompatActivity() {
 
                 if (!newText.isNullOrEmpty()) {
                     Toast.makeText(this@SearchActivity, newText.toString(), Toast.LENGTH_SHORT).show()
-                    getData(newText.toString())
-                }else{
+                    popup(newText.toString())
+                    searchView.requestFocus()
+                } else {
                     Toast.makeText(this@SearchActivity, "Empty", Toast.LENGTH_SHORT).show()
                 }
                 return true
