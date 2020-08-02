@@ -8,8 +8,8 @@ import com.ngangavic.test.R
 class MessageHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-//    var textViewName: TextView=itemView.findViewById(R.id.textViewName) as TextView
-    var textViewTime: TextView=itemView.findViewById(R.id.textViewTime) as TextView
-    var textViewMessage: TextView=itemView.findViewById(R.id.textViewMessage) as TextView
+    //    var textViewName: TextView=itemView.findViewById(R.id.textViewName) as TextView
+    var textViewTime: TextView = itemView.findViewById(R.id.textViewTime) as TextView
+    var textViewMessage: TextView = itemView.findViewById(R.id.textViewMessage) as TextView
 
 }

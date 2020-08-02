@@ -10,36 +10,35 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.ngangavic.test.R
-import java.security.Provider
 
-abstract class BaseTaskService: Service() {
+abstract class BaseTaskService : Service() {
 
-    private var numTasks=0
+    private var numTasks = 0
 
     private val manager by lazy {
         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     }
 
-    fun taskStarted(){
+    fun taskStarted() {
         changeNumberOfTasks(1)
     }
 
-    fun taskCompleted(){
+    fun taskCompleted() {
         changeNumberOfTasks(-1)
     }
 
     @Synchronized
-    private fun changeNumberOfTasks(delta:Int){
+    private fun changeNumberOfTasks(delta: Int) {
         Log.d("TASK NUMBER ", "$numTasks $delta")
-        numTasks +=delta
+        numTasks += delta
 
-        if (numTasks<=0){
-            Log.d("SERVICE","stopping")
+        if (numTasks <= 0) {
+            Log.d("SERVICE", "stopping")
             stopSelf()
         }
     }
 
-    private fun createDefaultChannel(){
+    private fun createDefaultChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(CHANNEL_ID_DEFAULT,
                     "Default",

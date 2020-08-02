@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ngangavic.test.R
-import com.ngangavic.test.chat.Message
-import java.util.ArrayList
+import java.util.*
 
 class SearchAdapter(private var context: Context, private val search: ArrayList<Search>) :
         RecyclerView.Adapter<SearchHolder>() {
@@ -19,7 +18,7 @@ class SearchAdapter(private var context: Context, private val search: ArrayList<
     }
 
     override fun getItemCount(): Int {
-       return search.size
+        return search.size
     }
 
     override fun onBindViewHolder(holder: SearchHolder, position: Int) {

@@ -1,21 +1,18 @@
 package com.ngangavic.test.multipleimages.utils
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.net.Uri
-import android.provider.MediaStore
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import java.io.ByteArrayOutputStream
 import java.util.*
 
 class UploadPhotoWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
     override fun doWork(): Result {
         return try {
-            Log.e("WORKER","STARTED")
+            Log.e("WORKER", "STARTED")
 //            inputData.toByteArray()
             val imageUriInput = getInputData().getString("imagePath")
 //            val bitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, Uri.parse(inputData.toString()))

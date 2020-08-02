@@ -22,31 +22,28 @@ class UploadPhotoService : JobIntentService() {
     override fun onCreate() {
         super.onCreate()
         storageRef = Firebase.storage.reference
-        Log.e("UPLOAD","Service started")
+        Log.e("UPLOAD", "Service started")
     }
 
     override fun onHandleWork(intent: Intent) {
         storageRef.child("android-test/multi-images/" + UUID.randomUUID().toString())
-        val data =Uri.parse("file://" +intent.getStringExtra("photo"))
+        val data = Uri.parse("file://" + intent.getStringExtra("photo"))
         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, data)
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
 
 //        val uploadTask = storageRef.putBytes(byteArrayOutputStream.toByteArray())
         val uploadTask = storageRef.putFile(data)
-        uploadTask.addOnProgressListener {taskSnapshot ->
-            Log.e("UPLOAD",taskSnapshot.bytesTransferred.toString()+"/"+taskSnapshot.totalByteCount.toString())
+        uploadTask.addOnProgressListener { taskSnapshot ->
+            Log.e("UPLOAD", taskSnapshot.bytesTransferred.toString() + "/" + taskSnapshot.totalByteCount.toString())
         }
-                .addOnSuccessListener {Log.e("UPLOAD","Upload success") }
-                .addOnFailureListener { Log.e("UPLOAD","Upload failed")}
+                .addOnSuccessListener { Log.e("UPLOAD", "Upload success") }
+                .addOnFailureListener { Log.e("UPLOAD", "Upload failed") }
     }
 
     fun enqueueWork(context: Context, intent: Intent) {
         enqueueWork(context, UploadPhotoService::class.java, JOB_ID, intent)
     }
-
-
-
 
 
 }

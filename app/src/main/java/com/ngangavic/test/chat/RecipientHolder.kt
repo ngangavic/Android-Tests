@@ -7,5 +7,5 @@ import com.ngangavic.test.R
 
 class RecipientHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-    val textViewName: TextView =itemView.findViewById(R.id.textViewName) as TextView
+    val textViewName: TextView = itemView.findViewById(R.id.textViewName) as TextView
 }

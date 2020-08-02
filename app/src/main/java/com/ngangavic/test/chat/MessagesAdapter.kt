@@ -1,6 +1,5 @@
 package com.ngangavic.test.chat
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,7 @@ class MessagesAdapter(private val messages: ArrayList<Message>) :
         RecyclerView.Adapter<MessageHolder>() {
 
     private val me = 100
-    private var auth: FirebaseAuth=FirebaseAuth.getInstance()
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
         val viewHolder: MessageHolder
@@ -33,9 +32,9 @@ class MessagesAdapter(private val messages: ArrayList<Message>) :
     }
 
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
-        holder.textViewMessage.text=messages[position].message
+        holder.textViewMessage.text = messages[position].message
 //        holder.textViewName.text=messages[position].person
-        holder.textViewTime.text=messages[position].time
+        holder.textViewTime.text = messages[position].time
     }
 
     override fun getItemViewType(position: Int): Int {

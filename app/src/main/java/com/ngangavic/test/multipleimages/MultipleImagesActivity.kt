@@ -16,11 +16,8 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.app.JobIntentService.enqueueWork
 import androidx.core.content.ContextCompat
 import androidx.work.Data
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -33,11 +30,9 @@ import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import com.ngangavic.test.R
 import com.ngangavic.test.multipleimages.utils.UploadPhotoService
-import com.ngangavic.test.multipleimages.utils.UploadPhotoWorker
 import com.ngangavic.test.workmanager.Constants
 import java.io.ByteArrayOutputStream
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 
@@ -132,9 +127,9 @@ class MultipleImagesActivity : AppCompatActivity() {
     }
 
 
-    private fun upload(uri: ArrayList<Uri>){
+    private fun upload(uri: ArrayList<Uri>) {
         Log.e("DATA LIST", uri.toString())
-        for(i in uri) {
+        for (i in uri) {
             Log.e("DATA LIST I", i.toString())
             val mIntent = Intent(this, UploadPhotoService::class.java)
             mIntent.putExtra("photo", i.toString())
@@ -179,7 +174,7 @@ class MultipleImagesActivity : AppCompatActivity() {
 //        continuation.enqueue()
     }
 
-    private fun createInputDataForUri(uri:Uri): Data {
+    private fun createInputDataForUri(uri: Uri): Data {
         val builder = Data.Builder()
         uri.let {
             builder.putString(Constants.KEY_IMAGE_URI, uri.toString())
@@ -275,8 +270,8 @@ class MultipleImagesActivity : AppCompatActivity() {
 //
 //            }
             }
-        }catch (e:Exception){
-            Log.e("IMG",e.message.toString())
+        } catch (e: Exception) {
+            Log.e("IMG", e.message.toString())
         }
         super.onActivityResult(requestCode, resultCode, data)
 
