@@ -107,6 +107,10 @@ dependencies {
 
     implementation 'com.droidninja:filepicker:2.2.4'
 
+    //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.conscrypt:conscrypt-android:2.2.1'
+
+    //firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.5.0'
 }
