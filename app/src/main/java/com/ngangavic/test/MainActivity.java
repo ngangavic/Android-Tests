@@ -33,6 +33,7 @@ import com.ngangavic.test.download.PDFDownloadActivity;
 import com.ngangavic.test.expandablelistview.ExpandableListViewActivity;
 import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.firebasestorage.StorageActivity;
+import com.ngangavic.test.firestore.FirestoreActivity;
 import com.ngangavic.test.fragment.FragmentActivity;
 import com.ngangavic.test.fragment.ScannerDialog;
 import com.ngangavic.test.fragment.ScannerFragment;
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonImageScrollView;
     Button buttonImageChat;
     Button buttonSearch;
+    Button buttonFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         buttonImageScrollView = findViewById(R.id.buttonImageScrollView);
         buttonImageChat = findViewById(R.id.buttonImageChat);
         buttonSearch = findViewById(R.id.buttonSearch);
+        buttonFirestore = findViewById(R.id.buttonFirestore);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -409,6 +412,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            }
+        });
+
+        buttonFirestore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FirestoreActivity.class));
             }
         });
 
