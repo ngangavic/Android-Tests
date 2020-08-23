@@ -30,6 +30,7 @@ import com.ngangavic.test.bottomnav.BottomNavigationActivity;
 import com.ngangavic.test.chat.ChatActivity;
 import com.ngangavic.test.contextmenu.ContextActivity;
 import com.ngangavic.test.download.PDFDownloadActivity;
+import com.ngangavic.test.excelparse.ExcelActivity;
 import com.ngangavic.test.expandablelistview.ExpandableListViewActivity;
 import com.ngangavic.test.fancyprogress.LightProgressActivity;
 import com.ngangavic.test.firebasestorage.StorageActivity;
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonImageChat;
     Button buttonSearch;
     Button buttonFirestore;
+    Button buttonExcel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         buttonImageChat = findViewById(R.id.buttonImageChat);
         buttonSearch = findViewById(R.id.buttonSearch);
         buttonFirestore = findViewById(R.id.buttonFirestore);
+        buttonExcel = findViewById(R.id.buttonExcel);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -419,6 +422,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, FirestoreActivity.class));
+            }
+        });
+
+        buttonExcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ExcelActivity.class));
             }
         });
 
