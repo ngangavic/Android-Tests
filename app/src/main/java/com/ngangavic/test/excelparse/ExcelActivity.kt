@@ -9,13 +9,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ngangavic.test.R
-import org.apache.poi.hssf.usermodel.HSSFWorkbook
-import org.apache.poi.openxml4j.opc.OPCPackage
-import org.apache.poi.poifs.filesystem.POIFSFileSystem
-import org.apache.poi.util.PackageHelper.open
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStream
-
+import java.io.InputStreamReader
 
 class ExcelActivity : AppCompatActivity() {
 
@@ -50,46 +47,55 @@ class ExcelActivity : AppCompatActivity() {
         }
 
         buttonParse.setOnClickListener {
-            parseFile()
+//            parseFile()
+            parseCSV()
         }
 
     }
 
-
-    private fun parseFile() {
+    private fun parseCSV(){
+        val resultList: MutableList<Any> = ArrayList()
+        val reader = BufferedReader(InputStreamReader(input))
         try {
-            val pkg = OPCPackage.open(input)
-        val myFileSystem = POIFSFileSystem(input)
-        val myWorkBook = XSSFWorkbook(pkg)
-        val mySheet = myWorkBook.getSheetAt(0)
+            textViewData.append("\n")
 
-        val rowIterator=mySheet.rowIterator()
-        var rowNo=0
-        textViewData.append("\n")
-        while (rowIterator.hasNext()){
-           val myRow=rowIterator.next()
-            if (rowNo!=0){
-                val cellIterator=myRow.cellIterator()
-                var colNo=0
-                var adm="";var name="";var classs=""
-                while (cellIterator.hasNext()){
-                    val myCell=cellIterator.next()
-                    if (colNo==0){
-                        adm=myCell.toString()
-                    }else if (colNo==1){
-                        name=myCell.toString()
-                    }else if (colNo==2) {
-                    adm=myCell.toString()
-                    }
-                    colNo++
+            val iterator = reader.lineSequence().iterator()
+            while(iterator.hasNext()) {
+                val line = iterator.next()
+                Log.e("LINE", line.split(",").toString())
+                resultList.add(line.split(","))
 
-                }
-                textViewData.append("ADM: "+adm+" NAME: "+name+" CLASS "+classs)
             }
-            rowNo++
-        }
-        }catch (e:Exception){
-            Log.e("ERROR: ",e.message.toString())
+            reader.close()
+
+            val itr=resultList.iterator()
+            if (itr.hasNext()){
+
+            itr.forEach {
+                val data=it.toString().replace("[","").replace("]","")
+
+                val adm="ADM: "+data.substringBefore(",")+" "
+                val name="NAME: "+data.substringAfter(",").substringBefore(",")+" "
+                val classs="CLASS: "+data.substringAfter(",").substringAfter(",")+" "
+
+                Log.e("ADM:",it.toString().substringBefore(","))
+                Log.e("NAME:",it.toString().substringAfter(",").substringBefore(","))
+                Log.e("CLASS",it.toString().substringAfter(",").substringAfter(","))
+
+                textViewData.append(adm+name+classs+"\n")
+
+            }
+
+            }
+
+        } catch (ex: IOException) {
+            throw RuntimeException("Error in reading CSV file: $ex")
+        } finally {
+            try {
+                input.close()
+            } catch (e: IOException) {
+                throw RuntimeException("Error while closing input stream: $e")
+            }
         }
     }
 
