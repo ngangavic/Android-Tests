@@ -1,18 +1,22 @@
 package com.ngangavic.test.excelparse
 
 import android.content.Intent
-import android.content.res.AssetManager
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.ngangavic.test.R
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
+
 
 class ExcelActivity : AppCompatActivity() {
 
@@ -24,7 +28,7 @@ class ExcelActivity : AppCompatActivity() {
 
     private lateinit var input: InputStream
 
-    private lateinit var assetManager: AssetManager
+    private lateinit var database:FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +40,20 @@ class ExcelActivity : AppCompatActivity() {
         buttonParse = findViewById(R.id.buttonParse)
         buttonUpload = findViewById(R.id.buttonUpload)
 
+        database=Firebase.database
+
         buttonParse.visibility=View.GONE
         buttonUpload.visibility=View.GONE
+
+        textViewData.movementMethod = ScrollingMovementMethod()
 
         buttonChooseFile.setOnClickListener {
             val i = Intent(Intent.ACTION_GET_CONTENT)
             i.setType("*/*")
-//            startActivityForResult(i, 200)
             startActivityForResult(Intent.createChooser(i, "Select File"), 200)
         }
 
         buttonParse.setOnClickListener {
-//            parseFile()
             parseCSV()
         }
 
@@ -72,17 +78,25 @@ class ExcelActivity : AppCompatActivity() {
             if (itr.hasNext()){
 
             itr.forEach {
-                val data=it.toString().replace("[","").replace("]","")
+                val data=it.toString().replace("[", "").replace("]", "")
 
                 val adm="ADM: "+data.substringBefore(",")+" "
                 val name="NAME: "+data.substringAfter(",").substringBefore(",")+" "
                 val classs="CLASS: "+data.substringAfter(",").substringAfter(",")+" "
 
-                Log.e("ADM:",it.toString().substringBefore(","))
-                Log.e("NAME:",it.toString().substringAfter(",").substringBefore(","))
-                Log.e("CLASS",it.toString().substringAfter(",").substringAfter(","))
+                Log.e("ADM:", it.toString().substringBefore(","))
+                Log.e("NAME:", it.toString().substringAfter(",").substringBefore(","))
+                Log.e("CLASS", it.toString().substringAfter(",").substringAfter(","))
 
-                textViewData.append(adm+name+classs+"\n")
+                textViewData.append(adm + name + classs + "\n")
+
+                val insert= hashMapOf(
+                        "NAME" to data.substringAfter(",").substringBefore(","),
+                        "CLASS" to data.substringAfter(",").substringAfter(",")
+                )
+
+                database.getReference("android-test").child("csv").child(data.substringBefore(","))
+                        .setValue(insert)
 
             }
 
