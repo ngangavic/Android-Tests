@@ -333,6 +333,7 @@
                 android:layout_column="1"
                 android:layout_gravity="center"
                 android:text="Firestore Activity" />
+
             <Button
                 android:id="@+id/buttonExcel"
                 android:layout_width="wrap_content"

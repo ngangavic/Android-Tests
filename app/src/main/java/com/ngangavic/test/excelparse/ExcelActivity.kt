@@ -28,7 +28,7 @@ class ExcelActivity : AppCompatActivity() {
 
     private lateinit var input: InputStream
 
-    private lateinit var database:FirebaseDatabase
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +40,10 @@ class ExcelActivity : AppCompatActivity() {
         buttonParse = findViewById(R.id.buttonParse)
         buttonUpload = findViewById(R.id.buttonUpload)
 
-        database=Firebase.database
+        database = Firebase.database
 
-        buttonParse.visibility=View.GONE
-        buttonUpload.visibility=View.GONE
+        buttonParse.visibility = View.GONE
+        buttonUpload.visibility = View.GONE
 
         textViewData.movementMethod = ScrollingMovementMethod()
 
@@ -59,14 +59,14 @@ class ExcelActivity : AppCompatActivity() {
 
     }
 
-    private fun parseCSV(){
+    private fun parseCSV() {
         val resultList: MutableList<Any> = ArrayList()
         val reader = BufferedReader(InputStreamReader(input))
         try {
             textViewData.append("\n")
 
             val iterator = reader.lineSequence().iterator()
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 val line = iterator.next()
                 Log.e("LINE", line.split(",").toString())
                 resultList.add(line.split(","))
@@ -74,31 +74,31 @@ class ExcelActivity : AppCompatActivity() {
             }
             reader.close()
 
-            val itr=resultList.iterator()
-            if (itr.hasNext()){
+            val itr = resultList.iterator()
+            if (itr.hasNext()) {
 
-            itr.forEach {
-                val data=it.toString().replace("[", "").replace("]", "")
+                itr.forEach {
+                    val data = it.toString().replace("[", "").replace("]", "")
 
-                val adm="ADM: "+data.substringBefore(",")+" "
-                val name="NAME: "+data.substringAfter(",").substringBefore(",")+" "
-                val classs="CLASS: "+data.substringAfter(",").substringAfter(",")+" "
+                    val adm = "ADM: " + data.substringBefore(",") + " "
+                    val name = "NAME: " + data.substringAfter(",").substringBefore(",") + " "
+                    val classs = "CLASS: " + data.substringAfter(",").substringAfter(",") + " "
 
-                Log.e("ADM:", it.toString().substringBefore(","))
-                Log.e("NAME:", it.toString().substringAfter(",").substringBefore(","))
-                Log.e("CLASS", it.toString().substringAfter(",").substringAfter(","))
+                    Log.e("ADM:", it.toString().substringBefore(","))
+                    Log.e("NAME:", it.toString().substringAfter(",").substringBefore(","))
+                    Log.e("CLASS", it.toString().substringAfter(",").substringAfter(","))
 
-                textViewData.append(adm + name + classs + "\n")
+                    textViewData.append(adm + name + classs + "\n")
 
-                val insert= hashMapOf(
-                        "NAME" to data.substringAfter(",").substringBefore(","),
-                        "CLASS" to data.substringAfter(",").substringAfter(",")
-                )
+                    val insert = hashMapOf(
+                            "NAME" to data.substringAfter(",").substringBefore(","),
+                            "CLASS" to data.substringAfter(",").substringAfter(",")
+                    )
 
-                database.getReference("android-test").child("csv").child(data.substringBefore(","))
-                        .setValue(insert)
+                    database.getReference("android-test").child("csv").child(data.substringBefore(","))
+                            .setValue(insert)
 
-            }
+                }
 
             }
 
@@ -116,8 +116,8 @@ class ExcelActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (requestCode == 200 && resultCode == RESULT_OK) {
-            buttonParse.visibility=View.VISIBLE
-            buttonUpload.visibility=View.VISIBLE
+            buttonParse.visibility = View.VISIBLE
+            buttonUpload.visibility = View.VISIBLE
 
             val uri = data?.data
             input = uri?.let { contentResolver.openInputStream(it) }!!
