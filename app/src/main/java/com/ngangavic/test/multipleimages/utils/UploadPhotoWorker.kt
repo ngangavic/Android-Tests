@@ -14,7 +14,7 @@ class UploadPhotoWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, pa
         return try {
             Log.e("WORKER", "STARTED")
 //            inputData.toByteArray()
-            val imageUriInput = getInputData().getString("imagePath")
+            val imageUriInput = inputData.getString("imagePath")
 //            val bitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, Uri.parse(inputData.toString()))
 ////            bitmap=Bitmap.createScaledBitmap(bitmap, 720, 405, false);
 //            val byteArrayOutputStream = ByteArrayOutputStream()

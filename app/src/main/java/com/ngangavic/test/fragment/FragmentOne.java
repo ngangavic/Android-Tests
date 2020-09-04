@@ -68,7 +68,7 @@ public class FragmentOne extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button buttonScanner = view.findViewById(R.id.buttonScanner);
-        Button btnPassData = (Button) view.findViewById(R.id.button2);
+        Button btnPassData = view.findViewById(R.id.button2);
 
         btnPassData.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -34,7 +34,7 @@ class PeopleAdapter(private var context: Context, private val p: ArrayList<Peopl
             //adding click listener
             popup.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
                 override fun onMenuItemClick(item: MenuItem): Boolean {
-                    when (item.getItemId()) {
+                    when (item.itemId) {
                         R.id.action_delete -> {
                             ac.loadDelete(p[position].id.toString(), context)
                             p.removeAt(position)

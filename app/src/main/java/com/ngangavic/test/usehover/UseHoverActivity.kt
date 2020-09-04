@@ -34,7 +34,7 @@ class UseHoverActivity : AppCompatActivity() {
                     .request("action_id")
                     .extra("variable name", "value") // Only if your action has variables
                     .buildIntent()
-            startActivityForResult(intent, 0);
+            startActivityForResult(intent, 0)
         }
     }
 

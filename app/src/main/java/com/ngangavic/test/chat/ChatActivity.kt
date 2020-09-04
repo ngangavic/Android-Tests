@@ -137,7 +137,7 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
     private fun authRegisterAlert() {
         val alert = AlertDialog.Builder(this)
         alert.setCancelable(false)
-        val customLayout = getLayoutInflater().inflate(R.layout.dialog_chat_register, null)
+        val customLayout = layoutInflater.inflate(R.layout.dialog_chat_register, null)
         alert.setView(customLayout)
 
         val name = customLayout.findViewById<EditText>(R.id.registerName)
@@ -180,7 +180,7 @@ class ChatActivity : AppCompatActivity(), SelectedRecipient {
     private fun authLoginAlert() {
         val alert = AlertDialog.Builder(this)
         alert.setCancelable(false)
-        val customLayout = getLayoutInflater().inflate(R.layout.dialog_chat_login, null)
+        val customLayout = layoutInflater.inflate(R.layout.dialog_chat_login, null)
         alert.setView(customLayout)
 
         val email = customLayout.findViewById<EditText>(R.id.loginEmail)

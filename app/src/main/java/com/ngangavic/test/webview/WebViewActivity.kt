@@ -41,7 +41,7 @@ class WebViewActivity : AppCompatActivity() {
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 ShowOrHideWebViewInitialUse = "hide"
-                progressBar.setVisibility(View.GONE)
+                progressBar.visibility = View.GONE
                 webView.visibility = View.VISIBLE
                 super.onPageFinished(view, url)
             }
@@ -50,9 +50,9 @@ class WebViewActivity : AppCompatActivity() {
         webView.webChromeClient = object : WebChromeClient() {
 
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                progressBar.setProgress(newProgress)
+                progressBar.progress = newProgress
                 if (newProgress == 100) {
-                    progressBar.setVisibility(View.GONE)
+                    progressBar.visibility = View.GONE
                 }
             }
         }

@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".excelparse.ExcelActivity"></activity>
+        <activity android:name=".excelparse.ExcelActivity" />
         <activity android:name=".firestore.FirestoreActivity" />
         <activity android:name=".search.SearchActivity">
             <intent-filter>

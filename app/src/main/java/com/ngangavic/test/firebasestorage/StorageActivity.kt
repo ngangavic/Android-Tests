@@ -89,7 +89,7 @@ class StorageActivity : AppCompatActivity() {
 
     private fun useCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePictureIntent.resolveActivity(applicationContext.getPackageManager()) != null) {
+        if (takePictureIntent.resolveActivity(applicationContext.packageManager) != null) {
             startActivityForResult(takePictureIntent, 201)
         }
     }
@@ -100,7 +100,7 @@ class StorageActivity : AppCompatActivity() {
             val uri = data.data
             try {
                 val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
-                imageView.setImageBitmap(bitmap);
+                imageView.setImageBitmap(bitmap)
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -133,12 +133,12 @@ class StorageActivity : AppCompatActivity() {
                             throw it
                         }
                     }
-                    return storageRef.getDownloadUrl()
+                    return storageRef.downloadUrl
                 }
             }).addOnCompleteListener(object : OnCompleteListener<Uri> {
                 override fun onComplete(p0: Task<Uri>) {
-                    if (p0.isSuccessful()) {
-                        val downloadUri = p0.getResult()
+                    if (p0.isSuccessful) {
+                        val downloadUri = p0.result
                         Log.d("DOWNLOAD URi", downloadUri.toString())
                         database.child("android-test").child(editTextName.text.toString().replace(" ", "")).child("name").setValue(editTextName.text.toString())
                         database.child("android-test").child(editTextName.text.toString().replace(" ", "")).child("url").setValue(downloadUri.toString())

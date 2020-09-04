@@ -47,8 +47,8 @@ class BinaryActivity : AppCompatActivity() {
         val builder = StringBuilder()
 
         for (c in str.toCharArray()) {
-            val toString = Integer.toString(c.toInt(), 2); // get char value in binary
-            builder.append(String.format("%08d", Integer.parseInt(toString))); // we complete to have 8 digits
+            val toString = Integer.toString(c.toInt(), 2) // get char value in binary
+            builder.append(String.format("%08d", Integer.parseInt(toString))) // we complete to have 8 digits
         }
 
         return builder.toString()
@@ -56,7 +56,7 @@ class BinaryActivity : AppCompatActivity() {
 
     fun binaryToString(binary: String): String {
         if (!isBinary(binary))
-            return "Not a binary value";
+            return "Not a binary value"
 
         val chars = CharArray(binary.length / 8)
         var i = 0

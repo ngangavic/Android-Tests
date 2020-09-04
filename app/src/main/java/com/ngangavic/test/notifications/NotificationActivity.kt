@@ -68,8 +68,8 @@ class NotificationActivity : AppCompatActivity() {
     private fun createNotificationWithAction() {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
-        intent.putExtra(Intent.EXTRA_TEXT, "I opened WhatsApp from a notification.");
-        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "I opened WhatsApp from a notification.")
+        intent.type = "text/plain"
         intent.setPackage("com.whatsapp")
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
 

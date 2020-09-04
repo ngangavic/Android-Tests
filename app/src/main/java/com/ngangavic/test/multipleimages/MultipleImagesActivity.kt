@@ -78,7 +78,7 @@ class MultipleImagesActivity : AppCompatActivity() {
         fileStirngPaths = ArrayList()
         buttonSelect.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
-            intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
+            intent.type = "image/*" //allows any image file type. Change * to specific extension to limit it
 //**The following line is the important one!
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 //            startActivityForResult(intent,  100)
@@ -110,7 +110,7 @@ class MultipleImagesActivity : AppCompatActivity() {
     }
 
     private fun getRealPathFromURIPath(contentURI: Uri, activity: Activity): String {
-        val cursor = activity.getContentResolver().query(contentURI, null, null, null, null)
+        val cursor = activity.contentResolver.query(contentURI, null, null, null, null)
         return if (cursor == null) {
             contentURI.path.toString()
         } else {
@@ -200,12 +200,12 @@ class MultipleImagesActivity : AppCompatActivity() {
                             throw it
                         }
                     }
-                    return storageRef.getDownloadUrl()
+                    return storageRef.downloadUrl
                 }
             }).addOnCompleteListener(object : OnCompleteListener<Uri> {
                 override fun onComplete(p0: Task<Uri>) {
-                    if (p0.isSuccessful()) {
-                        val downloadUri = p0.getResult()
+                    if (p0.isSuccessful) {
+                        val downloadUri = p0.result
                         Log.d("DOWNLOAD URi", downloadUri.toString())
                         val url = downloadUri.toString()
                         Log.d("URL" + img++, downloadUri.toString())
@@ -237,7 +237,7 @@ class MultipleImagesActivity : AppCompatActivity() {
 //                            val marginLayoutParams = gridView.layoutParams as ViewGroup.MarginLayoutParams
 //                            marginLayoutParams.setMargins(0, gridView.horizontalSpacing, 0, 0)
 //                            gridView.adapter = galleryAdapter
-                        } else if (data.getData() != null) {
+                        } else if (data.data != null) {
                             val imagePath = Uri.parse(data.data!!.path)
 //                        fileStirngPaths.add(getRealPathFromURIPath(imagePath, this))
                             fileUri.add(imagePath)

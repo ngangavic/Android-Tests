@@ -43,14 +43,14 @@ class ImageScrollViewActivity : AppCompatActivity() {
         val animOut: Animation = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right)
         // set the animation type's to ViewFlipper
         // set the animation type's to ViewFlipper
-        viewFlipper.setInAnimation(animIn)
-        viewFlipper.setOutAnimation(animOut)
+        viewFlipper.inAnimation = animIn
+        viewFlipper.outAnimation = animOut
         // set interval time for flipping between views
         // set interval time for flipping between views
-        viewFlipper.setFlipInterval(3000)
+        viewFlipper.flipInterval = 3000
         // set auto start for flipping between views
         // set auto start for flipping between views
-        viewFlipper.setAutoStart(true)
+        viewFlipper.isAutoStart = true
 
     }
 }

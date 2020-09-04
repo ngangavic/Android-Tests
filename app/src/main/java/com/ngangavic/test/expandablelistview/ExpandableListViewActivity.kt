@@ -30,10 +30,10 @@ class ExpandableListViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expandable_list_view)
 
-        expandableListView = findViewById(R.id.expandableListView) as ExpandableListView
+        expandableListView = findViewById<ExpandableListView>(R.id.expandableListView)
         buttonDialog = findViewById(R.id.buttonDialog)
-        mFirebasedatabase = FirebaseDatabase.getInstance();
-        mTasksDatabaseReference = mFirebasedatabase.getReference().child("android-test").child("location")
+        mFirebasedatabase = FirebaseDatabase.getInstance()
+        mTasksDatabaseReference = mFirebasedatabase.reference.child("android-test").child("location")
         Log.d("DATA", mTasksDatabaseReference.toString())
 //        expandableListWard = HashMap()
 //        expandableListSubCounty = ArrayList()
@@ -74,7 +74,7 @@ class ExpandableListViewActivity : AppCompatActivity() {
 //                    Toast.LENGTH_SHORT
 //            ).show()
 //        }
-        expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
+        expandableListView.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
             Toast.makeText(
                     applicationContext,
                     "Clicked: " + (expandableListSubCounty as ArrayList<String>)[groupPosition] + " -> " + expandableListWard[(
@@ -168,8 +168,8 @@ class ExpandableListViewActivity : AppCompatActivity() {
                 expandableListAdapter.notifyDataSetChanged()
 //                tasks=ArrayList()
 
-                Log.d("DATA", "onChildAdded: dataSnapshot.getChildren: " + p0.getChildren());
-                Log.d("DATA", "onChildAdded: KEY" + p0.getKey() + " value " + p0.getValue().toString());
+                Log.d("DATA", "onChildAdded: dataSnapshot.getChildren: " + p0.children)
+                Log.d("DATA", "onChildAdded: KEY" + p0.key + " value " + p0.value.toString())
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {}

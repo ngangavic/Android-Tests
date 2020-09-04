@@ -42,9 +42,9 @@ class JobSchedulerActivity : AppCompatActivity() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (progress > 0) {
-                    textViewSeekLabel.setText("$progress s")
+                    textViewSeekLabel.text = "$progress s"
                 } else {
-                    textViewSeekLabel.setText("Not Set")
+                    textViewSeekLabel.text = "Not Set"
                 }
             }
 

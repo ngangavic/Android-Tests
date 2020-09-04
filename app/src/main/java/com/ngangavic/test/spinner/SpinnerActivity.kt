@@ -27,8 +27,8 @@ class SpinnerActivity : AppCompatActivity() {
     fun subCountySpinner() {
         val Dadapter = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.sub_county))
         Dadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        spinnerCounty.setAdapter(Dadapter)
-        spinnerCounty.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spinnerCounty.adapter = Dadapter
+        spinnerCounty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedDistrict = position
 
@@ -41,7 +41,6 @@ class SpinnerActivity : AppCompatActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-        )
     }
 
     private fun getDistrictResourceId(subCounty: String): Int {
@@ -60,18 +59,17 @@ class SpinnerActivity : AppCompatActivity() {
         spinnerCounty.visibility = View.GONE
         val resId = getDistrictResourceId(subCounty)
 
-        val Cadapter = ArrayAdapter<String>(applicationContext, android.R.layout.simple_spinner_item, getResources().getStringArray(resId))
-        Cadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinnerWard.setAdapter(Cadapter)
+        val Cadapter = ArrayAdapter<String>(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(resId))
+        Cadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        spinnerWard.adapter = Cadapter
         spinnerWard.performClick()
-        spinnerWard.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spinnerWard.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-        )
     }
 
     override fun onBackPressed() {

@@ -70,7 +70,7 @@ public class FragmentTwo extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        txtData = (TextView) view.findViewById(R.id.text);
+        txtData = view.findViewById(R.id.text);
         txtData.setText(mParam1);
         Log.d("FRAG2", mParam1);
     }

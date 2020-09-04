@@ -49,7 +49,7 @@ class ExcelActivity : AppCompatActivity() {
 
         buttonChooseFile.setOnClickListener {
             val i = Intent(Intent.ACTION_GET_CONTENT)
-            i.setType("*/*")
+            i.type = "*/*"
             startActivityForResult(Intent.createChooser(i, "Select File"), 200)
         }
 
