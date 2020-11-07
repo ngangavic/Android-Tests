@@ -33,6 +33,7 @@ Features availbale:-
 
 15. Firebase
 
-16. Many more
+16. Lots of fun
+
 
 Feel free to use my code. Happy coding 💻
