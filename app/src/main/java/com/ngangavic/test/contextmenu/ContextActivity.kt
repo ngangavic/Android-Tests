@@ -27,8 +27,8 @@ class ContextActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        item?.let {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        item.let {
             when (it.itemId) {
                 R.id.action_add -> {
                     showContextMenuDialogFragment()

@@ -40,7 +40,9 @@ class ViewImageActivity : AppCompatActivity() {
 
         val url = intent.getStringExtra("image_url")
 
-        Log.d("SENT_URL", url)
+        if (url != null) {
+            Log.d("SENT_URL", url)
+        }
 
         Glide.with(applicationContext).load(url)
                 .listener(object : RequestListener<Drawable> {

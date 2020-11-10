@@ -36,12 +36,16 @@ class UploadService : BaseTaskService() {
 
             // Make sure we have permission to read the data
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                contentResolver.takePersistableUriPermission(
-                        fileUri,
-                        Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                if (fileUri != null) {
+                    contentResolver.takePersistableUriPermission(
+                            fileUri,
+                            Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
             }
 
-            uploadFromUri(fileUri)
+            if (fileUri != null) {
+                uploadFromUri(fileUri)
+            }
 
         }
 

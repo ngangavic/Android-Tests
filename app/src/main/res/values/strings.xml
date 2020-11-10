@@ -42,5 +42,6 @@
     <string name="upload_success">Upload Success</string>
     <string name="upload_failure">Upload Success</string>
     <string name="progress_uploading">Uploading</string>
+    <string name="google_maps_key">GOOGLE MAPS API KEY</string>
 
 </resources>

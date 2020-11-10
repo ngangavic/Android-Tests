@@ -51,7 +51,7 @@ class RecorderActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, permissions, 0)
         } else {
             output = Environment.getExternalStorageDirectory().absolutePath + "/recording.mp3"
-            Log.d("PATH", output)
+            Log.d("PATH", output!!)
             mediaRecorder = MediaRecorder()
 
             mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
