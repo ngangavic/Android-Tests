@@ -343,6 +343,15 @@
                 android:layout_gravity="center"
                 android:text="Firestore Activity" />
 
+            <Button
+                android:id="@+id/buttonTimeTicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="17"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:text="Time Ticker" />
+
 
         </GridLayout>
     </androidx.core.widget.NestedScrollView>

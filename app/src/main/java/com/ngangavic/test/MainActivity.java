@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -51,6 +53,7 @@ import com.ngangavic.test.search.SearchActivity;
 import com.ngangavic.test.service.ServicesActivity;
 import com.ngangavic.test.sharedprefs.SharedPrefsActivity;
 import com.ngangavic.test.spinner.SpinnerActivity;
+import com.ngangavic.test.timeticker.TimeTickerActivity;
 import com.ngangavic.test.toast.ToastActivity;
 import com.ngangavic.test.usehover.UseHoverActivity;
 import com.ngangavic.test.viewpager.ViewPagerActivity;
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonSearch;
     Button buttonFirestore;
     Button buttonExcel;
+    Button buttonTimeTicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSearch = findViewById(R.id.buttonSearch);
         buttonFirestore = findViewById(R.id.buttonFirestore);
         buttonExcel = findViewById(R.id.buttonExcel);
+        buttonTimeTicker = findViewById(R.id.buttonTimeTicker);
 
         buttonPolo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -432,6 +437,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buttonTimeTicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TimeTickerActivity.class));
+            }
+        });
+
     }
 
     private void openScanner() {
@@ -455,6 +467,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void mpesa() {
         Settings.setBusiness_short_code("174379");
         Settings.setCallback_url("http://www.yourcallbackurl.com");
